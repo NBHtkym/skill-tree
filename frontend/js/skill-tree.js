@@ -129,6 +129,9 @@ const SkillTree = (function() {
     }
     
     function reloadSkillTree() {
+        // Clear layout cache on reload (auth state may have changed)
+        cachedLayout = null;
+        cachedSignature = null;
         loadSkillTreeData();
     }
     
