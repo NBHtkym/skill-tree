@@ -184,6 +184,8 @@ const ProgressTracker = (function() {
      * @returns {boolean} - True if the exercise was successfully marked as completed
      */
     function completeExercise(exerciseId) {
+        console.log('completeExercise called for:', exerciseId);
+        
         if (isExerciseCompleted(exerciseId)) {
             console.log('Exercise already completed:', exerciseId);
             return false;
@@ -200,55 +202,49 @@ const ProgressTracker = (function() {
             return false;
         }
         
-        // Update local state
+        // Update local state immediately
         completedExercises.push(exerciseId);
         
-        // Update backend if available
-        if (isApiAvailable) {
-            fetch(API_ENDPOINTS.PROGRESS, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                credentials: 'include',
-                body: JSON.stringify({
-                    exercise_id: exerciseId,
-                    completed: true
-                })
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`API error: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Exercise completion saved to API:', data);
-                // Update local state with the latest from the server
-                if (data.progress && data.progress.completed_exercises) {
-                    completedExercises = data.progress.completed_exercises;
-                }
-                updateExerciseStates();
-                updateUI();
-            })
-            .catch(error => {
-                console.error('Error saving exercise completion to API:', error);
-                // Keep the local update but save to localStorage as fallback
-                saveProgress();
-                updateExerciseStates();
-                updateUI();
-            });
-        } else {
-            // Just save to localStorage
-            saveProgress();
-            updateExerciseStates();
-            updateUI();
-        }
+        // Update UI immediately (don't wait for API)
+        saveProgress();
+        updateExerciseStates();
+        updateUI();
         
         // Trigger confetti animation
         if (window.showSkillMasteredAnimation) {
             window.showSkillMasteredAnimation(exerciseId);
         }
+        
+        // Try to sync with backend (async, don't block UI)
+        fetch(API_ENDPOINTS.PROGRESS, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                exercise_id: exerciseId,
+                completed: true
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                console.warn('API sync failed, using localStorage:', response.status);
+                return null;
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data && data.progress && data.progress.completed_exercises) {
+                console.log('Exercise completion synced to API:', data);
+                completedExercises = data.progress.completed_exercises;
+                updateExerciseStates();
+                updateUI();
+            }
+        })
+        .catch(error => {
+            console.warn('API sync error, using localStorage:', error);
+        });
         
         return true;
     }
