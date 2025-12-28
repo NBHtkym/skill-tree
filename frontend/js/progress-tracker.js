@@ -549,6 +549,8 @@ const ProgressTracker = (function() {
     };
 })();
 
+window.ProgressTracker = ProgressTracker;
+
 // Initialize when the DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // We'll need to fetch the skill tree data from the backend
