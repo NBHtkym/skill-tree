@@ -35,6 +35,13 @@ python main.py
 ```
 
 ## Recent Changes
+- December 28, 2025: Bug fixes for progress tracking and custom exercises
+  - Fixed token-based authentication for iframe compatibility (bypasses third-party cookie blocking)
+  - Fixed exercise completion syncing to database
+  - Fixed custom exercises appearing in skill tree after login
+  - Improved barycenter algorithm with 6 passes for better edge crossing reduction
+  - Custom exercises are now placed at the end of their category to minimize edge crossings
+  - Fixed issue where custom exercise next_exercises could incorrectly block base exercises
 - December 2025: Added custom exercise creation
   - Logged-in users can create their own exercises
   - Set prerequisites and next exercises for custom nodes
@@ -44,7 +51,7 @@ python main.py
   - Email/password signup and login
   - Separate progress tracking per user account
   - PostgreSQL database for persistent user data
-  - Session-based authentication with Flask-Login
+  - Token-based authentication with localStorage (for iframe compatibility)
 - December 2025: Major UI/UX overhaul
   - Implemented hierarchical top-to-bottom layout (easier exercises at top, advanced at bottom)
   - Full-screen skill tree visualization with dark gradient background

@@ -231,11 +231,24 @@ const SkillTree = (function() {
             return sum / connectedNodes.length;
         }
         
-        levels.get(0)?.forEach((nodeId, index) => {
+        // Initial ordering: sort level 0 by subset, then give custom exercises higher indices
+        const level0 = levels.get(0) || [];
+        level0.sort((a, b) => {
+            const exA = exerciseMap.get(a);
+            const exB = exerciseMap.get(b);
+            // Put custom exercises at the end of their category
+            if (exA.isCustom && !exB.isCustom) return 1;
+            if (!exA.isCustom && exB.isCustom) return -1;
+            const subsetA = exA.subset || exA.category || 'default';
+            const subsetB = exB.subset || exB.category || 'default';
+            return (subsetOrder.get(subsetA) || 0) - (subsetOrder.get(subsetB) || 0);
+        });
+        level0.forEach((nodeId, index) => {
             exerciseMap.get(nodeId).orderIndex = index;
         });
         
-        for (let pass = 0; pass < 4; pass++) {
+        // Run more passes for better convergence with custom exercises
+        for (let pass = 0; pass < 6; pass++) {
             for (let level = 1; level <= maxLevel; level++) {
                 const nodeIds = levels.get(level) || [];
                 nodeIds.forEach(nodeId => {
