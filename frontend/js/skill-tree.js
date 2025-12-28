@@ -451,22 +451,37 @@ const SkillTree = (function() {
             const isAvailable = !isCompleted && (!window.ProgressTracker || 
                 window.ProgressTracker.arePrerequisitesMet(exercise));
             
+            // Remove old listener
+            completeBtn.replaceWith(completeBtn.cloneNode(true));
+            const newBtn = elements.tooltip.querySelector('.tooltip-complete-btn');
+            
             if (isCompleted) {
-                completeBtn.textContent = 'Completed ✓';
-                completeBtn.disabled = true;
+                newBtn.textContent = 'Completed ✓';
+                newBtn.disabled = true;
+                newBtn.classList.add('completed');
             } else if (isAvailable) {
-                completeBtn.textContent = 'Mark Complete';
-                completeBtn.disabled = false;
-                completeBtn.onclick = () => {
+                newBtn.textContent = 'Mark Complete';
+                newBtn.disabled = false;
+                newBtn.classList.remove('completed');
+                newBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Complete button clicked for:', exercise.id);
                     if (window.ProgressTracker) {
-                        window.ProgressTracker.completeExercise(exercise.id);
-                        showTooltip(exercise, event);
-                        updateSkillTree();
+                        const success = window.ProgressTracker.completeExercise(exercise.id);
+                        console.log('completeExercise returned:', success);
+                        if (success) {
+                            newBtn.textContent = 'Completed ✓';
+                            newBtn.disabled = true;
+                            newBtn.classList.add('completed');
+                            updateSkillTree();
+                        }
                     }
-                };
+                });
             } else {
-                completeBtn.textContent = 'Locked';
-                completeBtn.disabled = true;
+                newBtn.textContent = 'Locked';
+                newBtn.disabled = true;
+                newBtn.classList.remove('completed');
             }
         }
         
