@@ -146,8 +146,27 @@ const SkillTree = (function() {
         document.dispatchEvent(new CustomEvent('skillTreeDataLoaded', { detail: { data: skillTreeData } }));
     }
     
-    function computeHierarchicalLayout(exercises) {
+    // Generate a signature for exercise data to detect changes
+    function getExerciseSignature(exercises) {
+        const sig = exercises.map(ex => `${ex.id}:${(ex.prerequisites || []).join(',')}`).sort().join('|');
+        return btoa(sig).substring(0, 32);
+    }
+    
+    // Cache for computed layouts
+    let cachedLayout = null;
+    let cachedSignature = null;
+    
+    function computeHierarchicalLayout(exercises, forceRecompute = false) {
         if (!exercises || exercises.length === 0) return [];
+        
+        // Check if we can use cached layout
+        const signature = getExerciseSignature(exercises);
+        if (!forceRecompute && cachedLayout && cachedSignature === signature) {
+            console.log('Using cached layout');
+            return cachedLayout;
+        }
+        
+        console.log('Computing new layout (barycenter algorithm)');
         
         const exerciseMap = new Map();
         exercises.forEach(ex => exerciseMap.set(ex.id, { ...ex, level: 0, children: [] }));
@@ -311,6 +330,10 @@ const SkillTree = (function() {
                 });
             });
         });
+        
+        // Cache the computed layout
+        cachedLayout = positions;
+        cachedSignature = signature;
         
         return positions;
     }
