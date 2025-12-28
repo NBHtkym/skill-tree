@@ -16,23 +16,12 @@ const ProgressTracker = (function() {
     let lockedExercises = [];
     let isApiAvailable = false;
     
-    // DOM elements cache
+    // DOM elements cache (updated for new full-screen layout)
     const elements = {
         skillTree: document.getElementById('skill-tree'),
-        skillsCompletedCount: document.querySelector('.stat-value:nth-child(1)'),
-        availableCount: document.querySelector('.stat-value:nth-child(3)'),
-        lockedCount: document.querySelector('.stat-value:nth-child(5)'),
-        progressFill: document.querySelector('.profile-body .progress-fill'),
-        progressText: document.querySelector('.profile-body .progress-text'),
-        exerciseContent: document.querySelector('.exercise-content'),
-        exerciseTitle: document.querySelector('.exercise-title'),
-        exerciseCategory: document.querySelector('.exercise-category'),
-        exerciseDescription: document.querySelector('.exercise-description p'),
-        prerequisitesList: document.querySelector('.prerequisites-list'),
-        exerciseProgressFill: document.querySelector('.exercise-progress .progress-fill'),
-        exerciseProgressText: document.querySelector('.exercise-progress .progress-text'),
-        completeButton: document.querySelector('.primary-btn'),
-        logProgressButton: document.querySelector('.secondary-btn')
+        completedCount: document.getElementById('completed-count'),
+        availableCount: document.getElementById('available-count'),
+        lockedCount: document.getElementById('locked-count')
     };
     
     /**
@@ -335,9 +324,9 @@ const ProgressTracker = (function() {
      * Update the UI to reflect the current progress
      */
     function updateUI() {
-        // Update stats
-        if (elements.skillsCompletedCount) {
-            elements.skillsCompletedCount.textContent = completedExercises.length;
+        // Update stats in header
+        if (elements.completedCount) {
+            elements.completedCount.textContent = completedExercises.length;
         }
         
         if (elements.availableCount) {
@@ -346,20 +335,6 @@ const ProgressTracker = (function() {
         
         if (elements.lockedCount) {
             elements.lockedCount.textContent = lockedExercises.length;
-        }
-        
-        // Update overall progress
-        const totalExercises = skillTreeData ? skillTreeData.exercises.length : 0;
-        const progressPercentage = totalExercises > 0 
-            ? Math.round((completedExercises.length / totalExercises) * 100) 
-            : 0;
-        
-        if (elements.progressFill) {
-            elements.progressFill.style.width = `${progressPercentage}%`;
-        }
-        
-        if (elements.progressText) {
-            elements.progressText.textContent = `${progressPercentage}% Complete`;
         }
         
         // Update skill tree nodes

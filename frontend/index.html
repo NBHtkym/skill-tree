@@ -9,76 +9,42 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- Header/Navigation -->
         <header class="header">
             <div class="logo">
                 <h1>Workout Skill Tree</h1>
+            </div>
+            <div class="header-stats">
+                <div class="stat">
+                    <span class="stat-value" id="completed-count">0</span>
+                    <span class="stat-label">Completed</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value" id="available-count">0</span>
+                    <span class="stat-label">Available</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value" id="locked-count">0</span>
+                    <span class="stat-label">Locked</span>
+                </div>
             </div>
             <nav class="main-nav">
                 <ul>
                     <li><a href="#" class="active">Skill Tree</a></li>
                     <li><a href="#">Progress</a></li>
-                    <li><a href="#">Achievements</a></li>
                     <li><a href="#">Settings</a></li>
                 </ul>
             </nav>
-            <div class="mobile-menu-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
         </header>
 
-        <main class="main-content">
-            <!-- User Profile/Progress Section -->
-            <section class="user-profile">
-                <div class="profile-card">
-                    <div class="profile-header">
-                        <div class="profile-avatar">
-                            <i class="fas fa-user-circle"></i>
-                        </div>
-                        <div class="profile-info">
-                            <h2>Your Progress</h2>
-                            <div class="progress-stats">
-                                <div class="stat">
-                                    <span class="stat-value">12</span>
-                                    <span class="stat-label">Skills Mastered</span>
-                                </div>
-                                <div class="stat">
-                                    <span class="stat-value">3</span>
-                                    <span class="stat-label">Available</span>
-                                </div>
-                                <div class="stat">
-                                    <span class="stat-value">24</span>
-                                    <span class="stat-label">Locked</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="profile-body">
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 30%;"></div>
-                        </div>
-                        <p class="progress-text">30% Complete</p>
-                    </div>
+        <main class="main-content fullscreen">
+            <section class="skill-tree-container fullscreen">
+                <div class="controls-overlay">
+                    <button class="zoom-in" title="Zoom In"><i class="fas fa-plus"></i></button>
+                    <button class="zoom-out" title="Zoom Out"><i class="fas fa-minus"></i></button>
+                    <button class="reset" title="Reset View"><i class="fas fa-sync-alt"></i></button>
                 </div>
-            </section>
-
-            <!-- Skill Tree Visualization Area -->
-            <section class="skill-tree-container">
-                <div class="controls">
-                    <button class="zoom-in"><i class="fas fa-plus"></i></button>
-                    <button class="zoom-out"><i class="fas fa-minus"></i></button>
-                    <button class="reset"><i class="fas fa-sync-alt"></i></button>
-                </div>
-                <div class="skill-tree-viewport">
-                    <div id="skill-tree" class="skill-tree">
-                        <!-- Skill tree will be rendered here by JavaScript -->
-                        <div class="placeholder-message">
-                            <p>Skill tree will be rendered here</p>
-                            <p>JavaScript implementation coming soon</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="legend">
+                
+                <div class="legend-overlay">
                     <div class="legend-item">
                         <div class="node-example completed"></div>
                         <span>Completed</span>
@@ -92,66 +58,34 @@
                         <span>Locked</span>
                     </div>
                 </div>
-            </section>
 
-            <!-- Exercise Details Panel -->
-            <section class="exercise-details">
-                <div class="panel">
-                    <div class="panel-header">
-                        <h2>Exercise Details</h2>
-                        <button class="close-panel"><i class="fas fa-times"></i></button>
+                <div class="skill-tree-viewport">
+                    <div id="skill-tree" class="skill-tree"></div>
+                </div>
+
+                <div id="exercise-tooltip" class="exercise-tooltip hidden">
+                    <div class="tooltip-header">
+                        <h3 class="tooltip-title">Exercise Name</h3>
+                        <span class="tooltip-category">Category</span>
                     </div>
-                    <div class="panel-body">
-                        <div class="exercise-info">
-                            <h3>Select a skill to view details</h3>
-                            <p class="instruction">Click on any node in the skill tree to view exercise details and track your progress.</p>
-                            
-                            <!-- This content will be populated when a skill is selected -->
-                            <div class="exercise-content hidden">
-                                <div class="exercise-header">
-                                    <h3 class="exercise-title">Exercise Name</h3>
-                                    <div class="exercise-category">Category</div>
-                                </div>
-                                
-                                <div class="exercise-description">
-                                    <p>Exercise description will appear here.</p>
-                                </div>
-                                
-                                <div class="exercise-requirements">
-                                    <h4>Requirements</h4>
-                                    <ul class="prerequisites-list">
-                                        <li>Prerequisite 1</li>
-                                        <li>Prerequisite 2</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="exercise-progress">
-                                    <h4>Your Progress</h4>
-                                    <div class="progress-tracker">
-                                        <div class="progress-bar">
-                                            <div class="progress-fill" style="width: 0%;"></div>
-                                        </div>
-                                        <span class="progress-text">0%</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="exercise-actions">
-                                    <button class="btn primary-btn">Mark as Complete</button>
-                                    <button class="btn secondary-btn">Log Progress</button>
-                                </div>
-                            </div>
+                    <div class="tooltip-body">
+                        <p class="tooltip-description">Description</p>
+                        <div class="tooltip-prereqs">
+                            <strong>Prerequisites:</strong>
+                            <ul class="prereqs-list"></ul>
                         </div>
+                        <div class="tooltip-difficulty">
+                            <strong>Difficulty:</strong> <span class="difficulty-value">1</span>
+                        </div>
+                    </div>
+                    <div class="tooltip-actions">
+                        <button class="btn primary-btn tooltip-complete-btn">Mark Complete</button>
                     </div>
                 </div>
             </section>
         </main>
-
-        <footer class="footer">
-            <p>&copy; 2025 Workout Skill Tree. All rights reserved.</p>
-        </footer>
     </div>
 
-    <!-- JavaScript files will be added in future steps -->
     <script src="js/skill-tree.js" defer></script>
     <script src="js/progress-tracker.js" defer></script>
     <script src="js/animations.js" defer></script>

@@ -1,51 +1,52 @@
 /**
  * Workout Skill Tree - Skill Tree Visualization
- * 
- * This file contains the JavaScript code for rendering and interacting with the skill tree.
+ * Hierarchical top-to-bottom layout with hover tooltips
  */
 
-// Define the SkillTree module using an IIFE to avoid global namespace pollution
 const SkillTree = (function() {
-    // Private variables
     let skillTreeData = null;
     let zoomLevel = 1;
     let panOffset = { x: 0, y: 0 };
     let isDragging = false;
     let dragStart = { x: 0, y: 0 };
-    let selectedNodeId = null;
+    let hoveredNodeId = null;
     
-    // API endpoints
     const API_ENDPOINTS = {
         SKILL_TREE: '/api/skill-tree',
         PROGRESS: '/api/progress',
         AVAILABLE_EXERCISES: '/api/available-exercises'
     };
     
-    // Backend API base URL - same origin since frontend and backend are served together
     const API_BASE_URL = '';
     
-    // DOM elements cache
+    const NODE_WIDTH = 70;
+    const NODE_HEIGHT = 70;
+    const HORIZONTAL_SPACING = 100;
+    const VERTICAL_SPACING = 120;
+    const PADDING = 80;
+    
     const elements = {
-        viewport: document.querySelector('.skill-tree-viewport'),
-        skillTree: document.getElementById('skill-tree'),
-        zoomIn: document.querySelector('.zoom-in'),
-        zoomOut: document.querySelector('.zoom-out'),
-        reset: document.querySelector('.reset')
+        viewport: null,
+        skillTree: null,
+        zoomIn: null,
+        zoomOut: null,
+        reset: null,
+        tooltip: null
     };
     
-    /**
-     * Initialize the skill tree
-     */
     function init() {
+        elements.viewport = document.querySelector('.skill-tree-viewport');
+        elements.skillTree = document.getElementById('skill-tree');
+        elements.zoomIn = document.querySelector('.zoom-in');
+        elements.zoomOut = document.querySelector('.zoom-out');
+        elements.reset = document.querySelector('.reset');
+        elements.tooltip = document.getElementById('exercise-tooltip');
+        
         bindEvents();
         loadSkillTreeData();
     }
     
-    /**
-     * Bind event listeners
-     */
     function bindEvents() {
-        // Zoom controls
         if (elements.zoomIn) {
             elements.zoomIn.addEventListener('click', () => {
                 zoomLevel = Math.min(zoomLevel * 1.2, 3);
@@ -55,7 +56,7 @@ const SkillTree = (function() {
         
         if (elements.zoomOut) {
             elements.zoomOut.addEventListener('click', () => {
-                zoomLevel = Math.max(zoomLevel / 1.2, 0.1);
+                zoomLevel = Math.max(zoomLevel / 1.2, 0.2);
                 applyTransform();
             });
         }
@@ -64,185 +65,208 @@ const SkillTree = (function() {
             elements.reset.addEventListener('click', resetView);
         }
         
-        // Pan controls
         if (elements.viewport) {
             elements.viewport.addEventListener('mousedown', startDrag);
             elements.viewport.addEventListener('mousemove', drag);
             elements.viewport.addEventListener('mouseup', endDrag);
             elements.viewport.addEventListener('mouseleave', endDrag);
             
-            // Touch events for mobile
-            elements.viewport.addEventListener('touchstart', handleTouchStart);
-            elements.viewport.addEventListener('touchmove', handleTouchMove);
-            elements.viewport.addEventListener('touchend', handleTouchEnd);
+            elements.viewport.addEventListener('wheel', handleWheel, { passive: false });
         }
+        
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.skill-node') && !e.target.closest('.exercise-tooltip')) {
+                hideTooltip();
+            }
+        });
     }
     
-    /**
-     * Load skill tree data from the backend API
-     */
+    function handleWheel(e) {
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? 0.9 : 1.1;
+        zoomLevel = Math.min(Math.max(zoomLevel * delta, 0.2), 3);
+        applyTransform();
+    }
+    
     function loadSkillTreeData() {
-        // Try to fetch from the backend API
         fetch(`${API_BASE_URL}${API_ENDPOINTS.SKILL_TREE}`)
             .then(response => {
-                if (!response.ok) {
-                    throw new Error(`API error: ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`API error: ${response.status}`);
                 return response.json();
             })
             .then(data => {
                 skillTreeData = data;
-                window.skillTreeData = data; // Make it available globally for other modules
+                window.skillTreeData = data;
                 renderSkillTree();
                 
-                // Dispatch event to notify other modules that data is loaded
-                const event = new CustomEvent('skillTreeDataLoaded', {
+                document.dispatchEvent(new CustomEvent('skillTreeDataLoaded', {
                     detail: { data: skillTreeData }
-                });
-                document.dispatchEvent(event);
+                }));
             })
             .catch(error => {
-                console.error('Error loading skill tree data from API:', error);
-                console.log('Falling back to local data...');
-                
-                // Fallback to local data file
+                console.error('Error loading skill tree data:', error);
                 fetch('/backend/data/skill_tree.json')
                     .then(response => response.json())
                     .then(data => {
                         skillTreeData = data;
                         window.skillTreeData = data;
                         renderSkillTree();
-                        
-                        const event = new CustomEvent('skillTreeDataLoaded', {
+                        document.dispatchEvent(new CustomEvent('skillTreeDataLoaded', {
                             detail: { data: skillTreeData }
-                        });
-                        document.dispatchEvent(event);
+                        }));
                     })
-                    .catch(fallbackError => {
-                        console.error('Error loading local skill tree data:', fallbackError);
-                        createPlaceholderSkillTree();
-                    });
+                    .catch(() => createPlaceholderSkillTree());
             });
     }
     
-    /**
-     * Create a placeholder skill tree for development
-     */
     function createPlaceholderSkillTree() {
-        // This is just for development when the backend is not available
-        const placeholderData = {
+        skillTreeData = {
             exercises: [
-                {
-                    id: "exercise1",
-                    name: "Push-ups",
-                    description: "Basic push-up exercise",
-                    difficulty: "beginner",
-                    category: "Strength",
-                    position: { x: 0, y: 0 },
-                    prerequisites: []
-                },
-                {
-                    id: "exercise2",
-                    name: "Squats",
-                    description: "Basic squat exercise",
-                    difficulty: "beginner",
-                    category: "Strength",
-                    position: { x: 150, y: 100 },
-                    prerequisites: ["exercise1"]
-                },
-                {
-                    id: "exercise3",
-                    name: "Pull-ups",
-                    description: "Basic pull-up exercise",
-                    difficulty: "intermediate",
-                    category: "Strength",
-                    position: { x: -150, y: 100 },
-                    prerequisites: ["exercise1"]
-                }
+                { id: "1", name: "Push-ups", difficulty: 1, category: "Strength", prerequisites: [], position: { x: 0, y: 0 } },
+                { id: "2", name: "Squats", difficulty: 1, category: "Strength", prerequisites: [], position: { x: 0, y: 0 } },
+                { id: "3", name: "Diamond Push-ups", difficulty: 3, category: "Strength", prerequisites: ["1"], position: { x: 0, y: 0 } },
+                { id: "4", name: "Pistol Squats", difficulty: 5, category: "Strength", prerequisites: ["2"], position: { x: 0, y: 0 } }
             ]
         };
-        
-        skillTreeData = placeholderData;
-        window.skillTreeData = placeholderData;
+        window.skillTreeData = skillTreeData;
         renderSkillTree();
-        
-        // Dispatch event to notify other modules that data is loaded
-        const event = new CustomEvent('skillTreeDataLoaded', {
-            detail: { data: skillTreeData }
-        });
-        document.dispatchEvent(event);
+        document.dispatchEvent(new CustomEvent('skillTreeDataLoaded', { detail: { data: skillTreeData } }));
     }
     
-    /**
-     * Render the skill tree based on the loaded data
-     */
-    function renderSkillTree() {
-        if (!skillTreeData || !skillTreeData.exercises || !elements.skillTree) return;
+    function computeHierarchicalLayout(exercises) {
+        if (!exercises || exercises.length === 0) return [];
         
-        // Clear existing content
-        elements.skillTree.innerHTML = '';
+        const exerciseMap = new Map();
+        exercises.forEach(ex => exerciseMap.set(ex.id, { ...ex, level: 0, children: [] }));
         
-        // Calculate viewport dimensions
-        const viewportRect = elements.viewport.getBoundingClientRect();
-        const viewportWidth = viewportRect.width;
-        const viewportHeight = viewportRect.height;
-        
-        // Calculate bounding box of all exercises
-        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
-        skillTreeData.exercises.forEach(exercise => {
-            if (exercise.position) {
-                minX = Math.min(minX, exercise.position.x);
-                maxX = Math.max(maxX, exercise.position.x);
-                minY = Math.min(minY, exercise.position.y);
-                maxY = Math.max(maxY, exercise.position.y);
-            }
-        });
-        
-        // Calculate scale and offset to fit all nodes in viewport with padding
-        const padding = 100;
-        const dataWidth = maxX - minX || 1;
-        const dataHeight = maxY - minY || 1;
-        const scaleX = (viewportWidth - padding * 2) / dataWidth;
-        const scaleY = (viewportHeight - padding * 2) / dataHeight;
-        const scale = Math.min(scaleX, scaleY, 1);
-        
-        const offsetX = padding - minX * scale + (viewportWidth - padding * 2 - dataWidth * scale) / 2;
-        const offsetY = padding - minY * scale + (viewportHeight - padding * 2 - dataHeight * scale) / 2;
-        
-        // Create nodes with normalized positions
-        skillTreeData.exercises.forEach(exercise => {
-            createNode(exercise, offsetX, offsetY, scale);
-        });
-        
-        // Create connections after all nodes are created
-        skillTreeData.exercises.forEach(exercise => {
-            if (exercise.prerequisites && exercise.prerequisites.length > 0) {
-                exercise.prerequisites.forEach(prereqId => {
-                    createConnection(prereqId, exercise.id);
+        exercises.forEach(ex => {
+            if (ex.prerequisites && ex.prerequisites.length > 0) {
+                ex.prerequisites.forEach(prereqId => {
+                    const parent = exerciseMap.get(prereqId);
+                    if (parent) {
+                        parent.children.push(ex.id);
+                    }
                 });
             }
         });
+        
+        const roots = [];
+        exerciseMap.forEach((ex, id) => {
+            if (!ex.prerequisites || ex.prerequisites.length === 0) {
+                roots.push(id);
+            }
+        });
+        
+        function assignLevels(nodeId, level) {
+            const node = exerciseMap.get(nodeId);
+            if (!node) return;
+            node.level = Math.max(node.level, level);
+            node.children.forEach(childId => assignLevels(childId, level + 1));
+        }
+        
+        roots.forEach(rootId => assignLevels(rootId, 0));
+        
+        const levels = new Map();
+        exerciseMap.forEach((ex, id) => {
+            if (!levels.has(ex.level)) {
+                levels.set(ex.level, []);
+            }
+            levels.get(ex.level).push(id);
+        });
+        
+        const subsetOrder = new Map();
+        let subsetIndex = 0;
+        exercises.forEach(ex => {
+            const subset = ex.subset || ex.category || 'default';
+            if (!subsetOrder.has(subset)) {
+                subsetOrder.set(subset, subsetIndex++);
+            }
+        });
+        
+        levels.forEach((nodeIds, level) => {
+            nodeIds.sort((a, b) => {
+                const exA = exerciseMap.get(a);
+                const exB = exerciseMap.get(b);
+                const subsetA = exA.subset || exA.category || 'default';
+                const subsetB = exB.subset || exB.category || 'default';
+                return (subsetOrder.get(subsetA) || 0) - (subsetOrder.get(subsetB) || 0);
+            });
+        });
+        
+        const positions = [];
+        const maxLevel = Math.max(...Array.from(levels.keys()));
+        
+        levels.forEach((nodeIds, level) => {
+            const levelWidth = nodeIds.length * (NODE_WIDTH + HORIZONTAL_SPACING);
+            const startX = -levelWidth / 2 + NODE_WIDTH / 2;
+            
+            nodeIds.forEach((nodeId, index) => {
+                const ex = exerciseMap.get(nodeId);
+                positions.push({
+                    ...ex,
+                    computedX: startX + index * (NODE_WIDTH + HORIZONTAL_SPACING),
+                    computedY: level * (NODE_HEIGHT + VERTICAL_SPACING)
+                });
+            });
+        });
+        
+        return positions;
     }
     
-    /**
-     * Create a node for an exercise
-     * @param {Object} exercise - The exercise data
-     * @param {number} offsetX - X offset for positioning
-     * @param {number} offsetY - Y offset for positioning
-     * @param {number} scale - Scale factor for positions
-     */
-    function createNode(exercise, offsetX, offsetY, scale) {
+    function renderSkillTree() {
+        if (!skillTreeData || !skillTreeData.exercises || !elements.skillTree) return;
+        
+        elements.skillTree.innerHTML = '';
+        
+        const layoutData = computeHierarchicalLayout(skillTreeData.exercises);
+        
+        if (layoutData.length === 0) return;
+        
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        layoutData.forEach(node => {
+            minX = Math.min(minX, node.computedX);
+            maxX = Math.max(maxX, node.computedX);
+            minY = Math.min(minY, node.computedY);
+            maxY = Math.max(maxY, node.computedY);
+        });
+        
+        const contentWidth = maxX - minX + NODE_WIDTH + PADDING * 2;
+        const contentHeight = maxY - minY + NODE_HEIGHT + PADDING * 2;
+        
+        elements.skillTree.style.width = `${contentWidth}px`;
+        elements.skillTree.style.height = `${contentHeight}px`;
+        
+        const offsetX = -minX + PADDING;
+        const offsetY = -minY + PADDING;
+        
+        layoutData.forEach(node => {
+            createNode(node, offsetX, offsetY);
+        });
+        
+        layoutData.forEach(node => {
+            if (node.prerequisites && node.prerequisites.length > 0) {
+                node.prerequisites.forEach(prereqId => {
+                    createConnection(prereqId, node.id);
+                });
+            }
+        });
+        
+        if (elements.viewport) {
+            elements.viewport.scrollLeft = (contentWidth - elements.viewport.clientWidth) / 2;
+            elements.viewport.scrollTop = 0;
+        }
+    }
+    
+    function createNode(exercise, offsetX, offsetY) {
         const node = document.createElement('div');
         node.className = 'skill-node';
         node.dataset.id = exercise.id;
         
-        // Position the node with normalized coordinates
-        const x = exercise.position.x * scale + offsetX;
-        const y = exercise.position.y * scale + offsetY;
+        const x = exercise.computedX + offsetX;
+        const y = exercise.computedY + offsetY;
         node.style.left = `${x}px`;
         node.style.top = `${y}px`;
         
-        // Create node content
         const icon = document.createElement('div');
         icon.className = 'skill-node-icon';
         icon.innerHTML = getCategoryIcon(exercise.category);
@@ -254,31 +278,33 @@ const SkillTree = (function() {
         node.appendChild(icon);
         node.appendChild(label);
         
-        // Add click event
-        node.addEventListener('click', (event) => {
-            event.stopPropagation();
-            selectNode(exercise.id);
+        node.addEventListener('mouseenter', (e) => showTooltip(exercise, e));
+        node.addEventListener('mouseleave', () => {
+            setTimeout(() => {
+                if (!elements.tooltip.matches(':hover')) {
+                    hideTooltip();
+                }
+            }, 100);
+        });
+        
+        node.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showTooltip(exercise, e);
         });
         
         elements.skillTree.appendChild(node);
     }
     
-    /**
-     * Create a connection between two nodes
-     * @param {string} sourceId - The ID of the source node
-     * @param {string} targetId - The ID of the target node
-     */
     function createConnection(sourceId, targetId) {
         const sourceNode = document.querySelector(`.skill-node[data-id="${sourceId}"]`);
         const targetNode = document.querySelector(`.skill-node[data-id="${targetId}"]`);
         
         if (!sourceNode || !targetNode) return;
         
-        // Use the node's style left/top values (local coordinates) instead of getBoundingClientRect
-        const sourceX = parseFloat(sourceNode.style.left) + 30;
-        const sourceY = parseFloat(sourceNode.style.top) + 30;
-        const targetX = parseFloat(targetNode.style.left) + 30;
-        const targetY = parseFloat(targetNode.style.top) + 30;
+        const sourceX = parseFloat(sourceNode.style.left) + NODE_WIDTH / 2;
+        const sourceY = parseFloat(sourceNode.style.top) + NODE_HEIGHT;
+        const targetX = parseFloat(targetNode.style.left) + NODE_WIDTH / 2;
+        const targetY = parseFloat(targetNode.style.top);
         
         const dx = targetX - sourceX;
         const dy = targetY - sourceY;
@@ -299,210 +325,207 @@ const SkillTree = (function() {
         elements.skillTree.appendChild(connection);
     }
     
-    /**
-     * Get an icon for a category
-     * @param {string} category - The exercise category
-     * @returns {string} - HTML for the icon
-     */
+    function showTooltip(exercise, event) {
+        if (!elements.tooltip) return;
+        
+        hoveredNodeId = exercise.id;
+        
+        const title = elements.tooltip.querySelector('.tooltip-title');
+        const category = elements.tooltip.querySelector('.tooltip-category');
+        const description = elements.tooltip.querySelector('.tooltip-description');
+        const prereqsList = elements.tooltip.querySelector('.prereqs-list');
+        const difficultyValue = elements.tooltip.querySelector('.difficulty-value');
+        const completeBtn = elements.tooltip.querySelector('.tooltip-complete-btn');
+        
+        if (title) title.textContent = exercise.name;
+        if (category) category.textContent = exercise.category || exercise.subset || 'General';
+        if (description) description.textContent = exercise.description || 'No description available.';
+        if (difficultyValue) difficultyValue.textContent = exercise.difficulty || 1;
+        
+        if (prereqsList) {
+            prereqsList.innerHTML = '';
+            if (exercise.prerequisites && exercise.prerequisites.length > 0) {
+                exercise.prerequisites.forEach(prereqId => {
+                    const prereq = skillTreeData.exercises.find(ex => ex.id === prereqId);
+                    if (prereq) {
+                        const li = document.createElement('li');
+                        li.textContent = prereq.name;
+                        if (window.ProgressTracker && window.ProgressTracker.isExerciseCompleted(prereqId)) {
+                            li.classList.add('completed');
+                        }
+                        prereqsList.appendChild(li);
+                    }
+                });
+            } else {
+                const li = document.createElement('li');
+                li.textContent = 'None (starter exercise)';
+                li.classList.add('completed');
+                prereqsList.appendChild(li);
+            }
+        }
+        
+        if (completeBtn) {
+            const isCompleted = window.ProgressTracker && window.ProgressTracker.isExerciseCompleted(exercise.id);
+            const isAvailable = !isCompleted && (!window.ProgressTracker || 
+                window.ProgressTracker.arePrerequisitesMet(exercise));
+            
+            if (isCompleted) {
+                completeBtn.textContent = 'Completed ✓';
+                completeBtn.disabled = true;
+            } else if (isAvailable) {
+                completeBtn.textContent = 'Mark Complete';
+                completeBtn.disabled = false;
+                completeBtn.onclick = () => {
+                    if (window.ProgressTracker) {
+                        window.ProgressTracker.completeExercise(exercise.id);
+                        showTooltip(exercise, event);
+                        updateSkillTree();
+                    }
+                };
+            } else {
+                completeBtn.textContent = 'Locked';
+                completeBtn.disabled = true;
+            }
+        }
+        
+        elements.tooltip.classList.remove('hidden');
+        
+        const rect = event.target.closest('.skill-node').getBoundingClientRect();
+        let left = rect.right + 10;
+        let top = rect.top;
+        
+        const tooltipRect = elements.tooltip.getBoundingClientRect();
+        if (left + tooltipRect.width > window.innerWidth) {
+            left = rect.left - tooltipRect.width - 10;
+        }
+        if (top + tooltipRect.height > window.innerHeight) {
+            top = window.innerHeight - tooltipRect.height - 10;
+        }
+        
+        elements.tooltip.style.left = `${left}px`;
+        elements.tooltip.style.top = `${top}px`;
+    }
+    
+    function hideTooltip() {
+        if (elements.tooltip) {
+            elements.tooltip.classList.add('hidden');
+        }
+        hoveredNodeId = null;
+    }
+    
     function getCategoryIcon(category) {
         const icons = {
             'Strength': '<i class="fas fa-dumbbell"></i>',
             'Cardio': '<i class="fas fa-heartbeat"></i>',
             'Flexibility': '<i class="fas fa-child"></i>',
             'Balance': '<i class="fas fa-balance-scale"></i>',
-            'Mobility': '<i class="fas fa-running"></i>'
+            'Mobility': '<i class="fas fa-running"></i>',
+            'Gymnastics': '<i class="fas fa-star"></i>'
         };
-        
         return icons[category] || '<i class="fas fa-star"></i>';
     }
     
-    /**
-     * Select a node
-     * @param {string} nodeId - The ID of the node to select
-     */
-    function selectNode(nodeId) {
-        // Deselect previously selected node
-        if (selectedNodeId) {
-            const prevNode = document.querySelector(`.skill-node[data-id="${selectedNodeId}"]`);
-            if (prevNode) {
-                prevNode.classList.remove('selected');
-            }
-        }
-        
-        selectedNodeId = nodeId;
-        
-        // Select new node
-        const node = document.querySelector(`.skill-node[data-id="${nodeId}"]`);
-        if (node) {
-            node.classList.add('selected');
-        }
-        
-        // Dispatch event for the progress tracker
-        const event = new CustomEvent('skillNodeClicked', {
-            detail: { id: nodeId }
-        });
-        document.dispatchEvent(event);
-    }
-    
-    /**
-     * Apply transform to the skill tree
-     */
     function applyTransform() {
         if (!elements.skillTree) return;
-        
-        elements.skillTree.style.transform = `translate(${panOffset.x}px, ${panOffset.y}px) scale(${zoomLevel})`;
+        elements.skillTree.style.transform = `scale(${zoomLevel})`;
+        elements.skillTree.style.transformOrigin = 'center top';
     }
     
-    /**
-     * Reset the view to the center
-     */
     function resetView() {
         zoomLevel = 1;
         panOffset = { x: 0, y: 0 };
         applyTransform();
+        if (elements.viewport && elements.skillTree) {
+            elements.viewport.scrollLeft = (elements.skillTree.offsetWidth - elements.viewport.clientWidth) / 2;
+            elements.viewport.scrollTop = 0;
+        }
     }
     
-    /**
-     * Start dragging the skill tree
-     * @param {Event} event - The mouse event
-     */
     function startDrag(event) {
         if (event.target.closest('.skill-node')) return;
-        
         isDragging = true;
-        dragStart = {
-            x: event.clientX - panOffset.x,
-            y: event.clientY - panOffset.y
-        };
-        
+        dragStart = { x: event.clientX, y: event.clientY };
         elements.viewport.style.cursor = 'grabbing';
     }
     
-    /**
-     * Drag the skill tree
-     * @param {Event} event - The mouse event
-     */
     function drag(event) {
         if (!isDragging) return;
-        
-        panOffset = {
-            x: event.clientX - dragStart.x,
-            y: event.clientY - dragStart.y
-        };
-        
-        applyTransform();
+        const dx = dragStart.x - event.clientX;
+        const dy = dragStart.y - event.clientY;
+        dragStart = { x: event.clientX, y: event.clientY };
+        elements.viewport.scrollLeft += dx;
+        elements.viewport.scrollTop += dy;
     }
     
-    /**
-     * End dragging the skill tree
-     */
     function endDrag() {
         isDragging = false;
-        elements.viewport.style.cursor = 'grab';
+        if (elements.viewport) {
+            elements.viewport.style.cursor = 'grab';
+        }
     }
     
-    /**
-     * Handle touch start event
-     * @param {TouchEvent} event - The touch event
-     */
-    function handleTouchStart(event) {
-        if (event.target.closest('.skill-node')) return;
-        
-        const touch = event.touches[0];
-        startDrag({
-            clientX: touch.clientX,
-            clientY: touch.clientY,
-            target: touch.target
-        });
-    }
-    
-    /**
-     * Handle touch move event
-     * @param {TouchEvent} event - The touch event
-     */
-    function handleTouchMove(event) {
-        if (!isDragging) return;
-        
-        const touch = event.touches[0];
-        drag({
-            clientX: touch.clientX,
-            clientY: touch.clientY
-        });
-    }
-    
-    /**
-     * Handle touch end event
-     */
-    function handleTouchEnd() {
-        endDrag();
-    }
-    
-    /**
-     * Update the skill tree after progress changes
-     */
     function updateSkillTree() {
-        // This will be called by the progress tracker when progress changes
-        // Update node states based on progress
         if (!window.ProgressTracker) return;
         
         const nodes = document.querySelectorAll('.skill-node');
         nodes.forEach(node => {
             const exerciseId = node.dataset.id;
+            const exercise = skillTreeData.exercises.find(ex => ex.id === exerciseId);
             
-            // Remove all state classes
             node.classList.remove('completed', 'available', 'locked');
             
-            // Add appropriate state class
             if (window.ProgressTracker.isExerciseCompleted(exerciseId)) {
                 node.classList.add('completed');
-            } else if (window.ProgressTracker.arePrerequisitesMet({
-                id: exerciseId,
-                prerequisites: getPrerequisites(exerciseId)
-            })) {
+            } else if (window.ProgressTracker.arePrerequisitesMet(exercise)) {
                 node.classList.add('available');
             } else {
                 node.classList.add('locked');
             }
         });
         
-        // Update connections
         const connections = document.querySelectorAll('.node-connection');
         connections.forEach(connection => {
             const sourceId = connection.dataset.source;
             const targetId = connection.dataset.target;
             
             connection.classList.remove('completed');
-            
             if (window.ProgressTracker.isExerciseCompleted(sourceId) && 
                 window.ProgressTracker.isExerciseCompleted(targetId)) {
                 connection.classList.add('completed');
             }
         });
-    }
-    
-    /**
-     * Get prerequisites for an exercise
-     * @param {string} exerciseId - The ID of the exercise
-     * @returns {string[]} - Array of prerequisite IDs
-     */
-    function getPrerequisites(exerciseId) {
-        if (!skillTreeData || !skillTreeData.exercises) return [];
         
-        const exercise = skillTreeData.exercises.find(ex => ex.id === exerciseId);
-        return exercise ? exercise.prerequisites || [] : [];
+        updateStats();
     }
     
-    // Public API
+    function updateStats() {
+        if (!window.ProgressTracker) return;
+        
+        const completedCount = document.getElementById('completed-count');
+        const availableCount = document.getElementById('available-count');
+        const lockedCount = document.getElementById('locked-count');
+        
+        if (completedCount) {
+            completedCount.textContent = window.ProgressTracker.getCompletedExercises().length;
+        }
+        if (availableCount) {
+            availableCount.textContent = window.ProgressTracker.getAvailableExercises().length;
+        }
+        if (lockedCount) {
+            lockedCount.textContent = window.ProgressTracker.getLockedExercises().length;
+        }
+    }
+    
     return {
         init,
         updateSkillTree,
         resetView,
+        updateStats,
         API_BASE_URL,
         API_ENDPOINTS
     };
 })();
 
-// Initialize when the DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     SkillTree.init();
 });

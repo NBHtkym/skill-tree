@@ -28,13 +28,18 @@ python main.py
 ```
 
 ## Recent Changes
-- December 2025: Consolidated duplicate project structure, removed legacy files
-- Fixed skill-tree.js zoom controls and node positioning to render within viewport
+- December 2025: Major UI/UX overhaul
+  - Implemented hierarchical top-to-bottom layout (easier exercises at top, advanced at bottom)
+  - Full-screen skill tree visualization with dark gradient background
+  - Hover-based tooltips for exercise details (replaces sidebar)
+  - Stats moved to header (Completed, Available, Locked counts)
+  - Legend overlay at top of skill tree
+- Consolidated duplicate project structure, removed legacy files
 - Migrated to combined Flask server for Replit environment
-- API base URL set to same-origin for unified server deployment
-- Added cache control headers to prevent stale content
 
 ## Notes
-- Skill tree visualization auto-scales nodes to fit viewport
-- Progress is saved both to backend JSON files and localStorage as fallback
-- Use zoom buttons (+/-) and drag to navigate the skill tree
+- Nodes are automatically organized by difficulty/prerequisites (top-to-bottom)
+- Hover over any node to see exercise details and mark as complete
+- Use zoom buttons (+/-) or mouse wheel to zoom
+- Drag to pan around the skill tree
+- Progress is saved to backend JSON files with localStorage fallback
