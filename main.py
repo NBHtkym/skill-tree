@@ -1,11 +1,13 @@
 import os
 from flask import Flask, jsonify, request, abort, send_from_directory
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+from werkzeug.middleware.proxy_fix import ProxyFix
 import json
 from datetime import datetime
 from models import db, User, UserProgress, CustomExercise
 
 app = Flask(__name__, static_folder='frontend', static_url_path='')
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
 app.secret_key = os.environ.get("SESSION_SECRET") or os.environ.get("FLASK_SECRET_KEY") or os.urandom(24)
 
 app.config['SESSION_COOKIE_SAMESITE'] = 'None'
