@@ -4,99 +4,61 @@ A full-stack web application that visualizes workout exercises as an interactive
 
 ## Features
 
-- Interactive skill tree visualization with nodes representing exercises
-- Visual indicators for completed, available, and locked exercises
-- Confetti animation effect when skills are mastered
-- Progress tracking with backend persistence and localStorage fallback
-- Responsive design that works on desktop and mobile devices
+- **Hierarchical skill tree visualization** - Exercises organized top-to-bottom by difficulty (beginner at top, advanced at bottom)
+- **Full-screen interactive view** with zoom and pan controls
+- **Hover-based tooltips** - Hover over any node to see exercise details
+- **Visual indicators** for completed (green), available (blue), and locked (gray) exercises
+- **Confetti animation** when skills are mastered
+- **Progress tracking** with backend persistence and localStorage fallback
+- **Responsive design** that works on desktop and mobile devices
 
 ## Project Structure
 
 ```
 workout-skill-tree/
-├── backend/                     # Python backend
-│   ├── app.py                   # Main Flask application
-│   └── data/                    # Data storage
-│       ├── skill_tree.json      # Processed skill tree data
-│       └── user_progress.json   # User progress data
+├── main.py                      # Combined Flask server (frontend + API)
 ├── frontend/                    # Frontend code
 │   ├── index.html               # Main HTML file
 │   ├── css/                     # Stylesheets
 │   │   └── style.css            # Main stylesheet
-│   ├── js/                      # JavaScript files
-│   │   ├── skill-tree.js        # Skill tree visualization
-│   │   ├── progress-tracker.js  # Progress tracking functionality
-│   │   └── animations.js        # Confetti animation
-│   └── assets/                  # Images and other assets
+│   └── js/                      # JavaScript files
+│       ├── skill-tree.js        # Skill tree visualization
+│       ├── progress-tracker.js  # Progress tracking functionality
+│       └── animations.js        # Confetti animation
+├── backend/                     # Backend data
+│   └── data/                    # Data storage
+│       ├── skill_tree.json      # Exercise skill tree data
+│       └── user_progress.json   # User progress data
+└── replit.md                    # Project documentation
 ```
 
-## Setup Instructions
+## Running the Application
 
-### Prerequisites
+### On Replit
 
-- Python 3.6 or higher
-- Flask
-- Flask-CORS
+Simply run the project - it will start the Flask server on port 5000:
 
-### Backend Setup
+```bash
+python main.py
+```
+
+### Local Development
 
 1. Install the required Python packages:
 
 ```bash
-pip install flask flask-cors
+pip install flask flask-cors gunicorn
 ```
 
-2. Navigate to the backend directory:
+2. Run the application:
 
 ```bash
-cd backend
+python main.py
 ```
 
-3. Run the Flask application:
-
-```bash
-python app.py
-```
-
-The backend API will be available at http://localhost:5050.
-
-### Frontend Setup
-
-There are two ways to run the frontend:
-
-#### Option 1: Using the included Python server
-
-1. From the project root directory, run:
-
-```bash
-python serve.py
-```
-
-The frontend will be available at http://localhost:8000.
-
-#### Option 2: Using any HTTP server
-
-1. Navigate to the frontend directory:
-
-```bash
-cd frontend
-```
-
-2. Start an HTTP server. For example, with Python:
-
-```bash
-# Python 3
-python -m http.server
-
-# Python 2
-python -m SimpleHTTPServer
-```
-
-The frontend will be available at http://localhost:8000.
+The application will be available at http://localhost:5000.
 
 ## API Endpoints
-
-The backend provides the following API endpoints:
 
 - `GET /api/skill-tree` - Get the skill tree data
 - `GET /api/progress` - Get the user progress data
@@ -105,48 +67,45 @@ The backend provides the following API endpoints:
 
 ## Usage
 
-1. Open the application in your web browser.
-2. The skill tree will be displayed with nodes representing exercises.
-3. Click on a node to view exercise details.
-4. If an exercise is available (all prerequisites are completed), you can mark it as complete.
-5. When an exercise is completed, a confetti animation will be displayed.
-6. Your progress is automatically saved to the backend and localStorage.
+1. Open the application in your web browser
+2. The skill tree displays exercises organized by difficulty (easier at top, harder at bottom)
+3. **Hover** over any node to view exercise details and the "Mark Complete" button
+4. Blue nodes are **available** - you can complete them now
+5. Gray nodes are **locked** - complete their prerequisites first
+6. Green nodes are **completed**
+7. Use **+/-** buttons or mouse wheel to zoom
+8. **Drag** to pan around the skill tree
+9. Progress is automatically saved
 
 ## Offline Mode
 
 The application supports offline mode by falling back to localStorage when the backend API is not available. When you reconnect, the application will attempt to sync your progress with the backend.
 
-## Development
+## Customization
 
 ### Adding New Exercises
 
-To add new exercises, edit the `skill_tree.json` file in the `backend/data` directory. Each exercise should have the following properties:
+Edit `backend/data/skill_tree.json`. Each exercise should have:
 
-- `id`: A unique identifier for the exercise
-- `name`: The name of the exercise
-- `description`: A description of the exercise
-- `difficulty`: The difficulty level (beginner, intermediate, advanced)
-- `category`: The category of the exercise (Strength, Cardio, Flexibility, etc.)
-- `position`: The position of the node in the skill tree (x, y coordinates)
-- `prerequisites`: An array of exercise IDs that must be completed before this exercise
+- `id`: Unique identifier
+- `name`: Exercise name
+- `description`: Exercise description
+- `difficulty`: Difficulty level (beginner, intermediate, advanced)
+- `category`: Category (Strength, Cardio, Flexibility, etc.)
+- `prerequisites`: Array of exercise IDs that must be completed first
 
 ### Customizing the UI
 
-The UI can be customized by editing the CSS files in the `frontend/css` directory. The main stylesheet is `style.css`.
+Edit `frontend/css/style.css` to customize colors, fonts, and layout.
 
-## Troubleshooting
+## Recent Updates
 
-### Backend API Not Available
-
-If the backend API is not available, the application will fall back to using localStorage for progress tracking. You will see a warning in the browser console.
-
-### Exercises Not Loading
-
-If the exercises are not loading, check that the `skill_tree.json` file is properly formatted and accessible to the backend.
-
-### Progress Not Saving
-
-If progress is not saving, check that the `user_progress.json` file is writable by the backend application.
+- **December 2025**: Major UI/UX overhaul
+  - Hierarchical top-to-bottom layout based on exercise prerequisites
+  - Full-screen skill tree with dark gradient background
+  - Hover-based tooltips (replaced click-to-select)
+  - Stats displayed in header (Completed, Available, Locked)
+  - Legend overlay at top of skill tree
 
 ## License
 
