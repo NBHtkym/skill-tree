@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Skill Tree</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Workout Skill Tree</h1>
+        <div class="user-stats">
+            <span id="user-xp">XP: 0</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="skill-tree-container">
+            <div id="skill-tree-canvas"></div>
+        </div>
+
+        <div id="skill-details" class="skill-details hidden">
+            <button id="close-details" class="close-button">&times;</button>
+            <h2 id="skill-name"></h2>
+            <div class="skill-info">
+                <p id="skill-description"></p>
+                <p><strong>Difficulty:</strong> <span id="skill-difficulty"></span></p>
+                <p><strong>XP Reward:</strong> <span id="skill-xp"></span></p>
+                <p><strong>Category:</strong> <span id="skill-category"></span></p>
+            </div>
+            <div class="skill-actions">
+                <button id="complete-skill" class="action-button">Mark as Complete</button>
+            </div>
+        </div>
+    </main>
+
+    <div id="confetti-container"></div>
+
+    <script src="js/skill-tree.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/progress-tracker.js"></script>
+</body>
+</html>

@@ -1,0 +1,836 @@
+{
+    "exercises": [
+        {
+            "id": "188209887004",
+            "name": "Wall Handstand",
+            "difficulty": 1,
+            "description": "",
+            "subset": "Handstand",
+            "category": "Gymnastics",
+            "position": {
+                "x": -48.08769293812322,
+                "y": 0.0
+            },
+            "prerequisites": []
+        },
+        {
+            "id": "141726027857",
+            "name": "Free Handstand",
+            "difficulty": 4,
+            "description": "",
+            "subset": "Handstand",
+            "category": "Gymnastics",
+            "position": {
+                "x": -48.08769293812322,
+                "y": -2.2811091380958888
+            },
+            "prerequisites": [
+                "188209887004"
+            ]
+        },
+        {
+            "id": "916443922032",
+            "name": "One Arm Handstand",
+            "difficulty": 10,
+            "description": "",
+            "subset": "Handstand",
+            "category": "Gymnastics",
+            "position": {
+                "x": -48.08769293812322,
+                "y": 2.2811091380958888
+            },
+            "prerequisites": [
+                "141726027857"
+            ]
+        },
+        {
+            "id": "338320143940",
+            "name": "Ring Shoulder Stand",
+            "difficulty": 5,
+            "description": "",
+            "subset": "Ring Handstand",
+            "category": "Gymnastics",
+            "position": {
+                "x": -45.806583800027326,
+                "y": -2.2811091380958888
+            },
+            "prerequisites": [
+                "141726027857"
+            ]
+        },
+        {
+            "id": "180817285462",
+            "name": "Ring Strap Handstand",
+            "difficulty": 6,
+            "description": "",
+            "subset": "Ring Handstand",
+            "category": "Gymnastics",
+            "position": {
+                "x": -45.806583800027326,
+                "y": 2.2811091380958888
+            },
+            "prerequisites": [
+                "338320143940"
+            ]
+        },
+        {
+            "id": "247706371086",
+            "name": "Ring Handstand",
+            "difficulty": 7,
+            "description": "",
+            "subset": "Ring Handstand",
+            "category": "Gymnastics",
+            "position": {
+                "x": -45.806583800027326,
+                "y": 0.0
+            },
+            "prerequisites": [
+                "180817285462",
+                "141726027857"
+            ]
+        },
+        {
+            "id": "780986276249",
+            "name": "Pike Headstand Pushup",
+            "difficulty": 1,
+            "description": "",
+            "subset": "Handstand Pushups",
+            "category": "Gymnastics",
+            "position": {
+                "x": -43.52547466193143,
+                "y": 6.843327414287667
+            },
+            "prerequisites": []
+        },
+        {
+            "id": "214924955840",
+            "name": "Box Headstand Pushup",
+            "difficulty": 2,
+            "description": "",
+            "subset": "Handstand Pushups",
+            "category": "Gymnastics",
+            "position": {
+                "x": -43.52547466193143,
+                "y": -4.5622182761917776
+            },
+            "prerequisites": [
+                "780986276249"
+            ]
+        },
+        {
+            "id": "784936015789",
+            "name": "Wall Headstand Pushup Ecc",
+            "difficulty": 3,
+            "description": "",
+            "subset": "Handstand Pushups",
+            "category": "Gymnastics",
+            "position": {
+                "x": -43.52547466193143,
+                "y": -2.2811091380958888
+            },
+            "prerequisites": [
+                "214924955840"
+            ]
+        },
+        {
+            "id": "181393126355",
+            "name": "Wall Headstand Pushup",
+            "difficulty": 4,
+            "description": "",
+            "subset": "Handstand Pushups",
+            "category": "Gymnastics",
+            "position": {
+                "x": -43.52547466193143,
+                "y": -6.843327414287667
+            },
+            "prerequisites": [
+                "784936015789"
+            ]
+        },
+        {
+            "id": "305080501640",
+            "name": "Wall Handstand Pushup",
+            "difficulty": 5,
+            "description": "",
+            "subset": "Handstand Pushups",
+            "category": "Gymnastics",
+            "position": {
+                "x": -43.52547466193143,
+                "y": 0.0
+            },
+            "prerequisites": [
+                "181393126355"
+            ]
+        },
+        {
+            "id": "333339378056",
+            "name": "Free Headstand Pushup",
+            "difficulty": 6,
+            "description": "",
+            "subset": "Handstand Pushups",
+            "category": "Gymnastics",
+            "position": {
+                "x": -43.52547466193143,
+                "y": 2.2811091380958888
+            },
+            "prerequisites": [
+                "305080501640"
+            ]
+        },
+        {
+            "id": "236725833581",
+            "name": "Free Handstand Pushup",
+            "difficulty": 7,
+            "description": "",
+            "subset": "Handstand Pushups",
+            "category": "Gymnastics",
+            "position": {
+                "x": -43.52547466193143,
+                "y": 4.5622182761917776
+            },
+            "prerequisites": [
+                "333339378056"
+            ]
+        },
+        {
+            "id": "267770151368",
+            "name": "Chest Press .3x BW",
+            "difficulty": 2,
+            "description": "",
+            "subset": "Chest Press",
+            "category": "Gymnastics",
+            "position": {
+                "x": -41.24436552383555,
+                "y": 10.2649911214315
+            },
+            "prerequisites": []
+        },
+        {
+            "id": "216074226863",
+            "name": "Chest Press .43x BW",
+            "difficulty": 3,
+            "description": "",
+            "subset": "Chest Press",
+            "category": "Gymnastics",
+            "position": {
+                "x": -41.24436552383555,
+                "y": -1.1405545690479444
+            },
+            "prerequisites": [
+                "267770151368"
+            ]
+        },
+        {
+            "id": "262262147178",
+            "name": "Chest Press .55x BW",
+            "difficulty": 4,
+            "description": "",
+            "subset": "Chest Press",
+            "category": "Gymnastics",
+            "position": {
+                "x": -41.24436552383555,
+                "y": -3.4216637071438334
+            },
+            "prerequisites": [
+                "216074226863"
+            ]
+        },
+        {
+            "id": "149740473501",
+            "name": "Chest Press .68x BW",
+            "difficulty": 5,
+            "description": "",
+            "subset": "Chest Press",
+            "category": "Gymnastics",
+            "position": {
+                "x": -41.24436552383555,
+                "y": 1.1405545690479444
+            },
+            "prerequisites": [
+                "262262147178"
+            ]
+        },
+        {
+            "id": "117154747612",
+            "name": "Chest Press .8x BW",
+            "difficulty": 6,
+            "description": "",
+            "subset": "Chest Press",
+            "category": "Gymnastics",
+            "position": {
+                "x": -41.24436552383555,
+                "y": 3.4216637071438334
+            },
+            "prerequisites": [
+                "149740473501"
+            ]
+        },
+        {
+            "id": "143989927686",
+            "name": "Chest Press .9x BW",
+            "difficulty": 7,
+            "description": "",
+            "subset": "Chest Press",
+            "category": "Gymnastics",
+            "position": {
+                "x": -41.24436552383555,
+                "y": -10.2649911214315
+            },
+            "prerequisites": [
+                "117154747612"
+            ]
+        },
+        {
+            "id": "251807276184",
+            "name": "Chest Press 1x BW",
+            "difficulty": 8,
+            "description": "",
+            "subset": "Chest Press",
+            "category": "Gymnastics",
+            "position": {
+                "x": -41.24436552383555,
+                "y": -7.983881983335611
+            },
+            "prerequisites": [
+                "143989927686"
+            ]
+        },
+        {
+            "id": "845014886101",
+            "name": "Chest Press 1.08x BW",
+            "difficulty": 9,
+            "description": "",
+            "subset": "Chest Press",
+            "category": "Gymnastics",
+            "position": {
+                "x": -41.24436552383555,
+                "y": 7.983881983335611
+            },
+            "prerequisites": [
+                "251807276184"
+            ]
+        },
+        {
+            "id": "811565907974",
+            "name": "Chest Press 1.15x BW",
+            "difficulty": 10,
+            "description": "",
+            "subset": "Chest Press",
+            "category": "Gymnastics",
+            "position": {
+                "x": -41.24436552383555,
+                "y": -5.702772845239721
+            },
+            "prerequisites": [
+                "845014886101"
+            ]
+        },
+        {
+            "id": "958189909560",
+            "name": "Chest Press 1.2x BW",
+            "difficulty": 11,
+            "description": "",
+            "subset": "Chest Press",
+            "category": "Gymnastics",
+            "position": {
+                "x": -41.24436552383555,
+                "y": 5.702772845239721
+            },
+            "prerequisites": [
+                "811565907974"
+            ]
+        },
+        {
+            "id": "225235361110",
+            "name": "Tuck L-sit",
+            "difficulty": 1,
+            "description": "",
+            "subset": "L-sit",
+            "category": "Gymnastics",
+            "position": {
+                "x": -38.96325638573966,
+                "y": -11.405545690479443
+            },
+            "prerequisites": []
+        },
+        {
+            "id": "143827095920",
+            "name": "1 Leg Bent L-sit",
+            "difficulty": 2,
+            "description": "",
+            "subset": "L-sit",
+            "category": "Gymnastics",
+            "position": {
+                "x": -38.96325638573966,
+                "y": 2.2811091380958888
+            },
+            "prerequisites": [
+                "225235361110"
+            ]
+        },
+        {
+            "id": "239497681577",
+            "name": "L-sit",
+            "difficulty": 3,
+            "description": "",
+            "subset": "L-sit",
+            "category": "Gymnastics",
+            "position": {
+                "x": -38.96325638573966,
+                "y": 6.843327414287667
+            },
+            "prerequisites": [
+                "143827095920"
+            ]
+        },
+        {
+            "id": "223923700609",
+            "name": "Straddle L-sit",
+            "difficulty": 4,
+            "description": "",
+            "subset": "L-sit",
+            "category": "Gymnastics",
+            "position": {
+                "x": -38.96325638573966,
+                "y": 9.124436552383555
+            },
+            "prerequisites": [
+                "239497681577"
+            ]
+        },
+        {
+            "id": "229021993285",
+            "name": "Ring Turned Out L-sit",
+            "difficulty": 5,
+            "description": "",
+            "subset": "L-sit",
+            "category": "Gymnastics",
+            "position": {
+                "x": -38.96325638573966,
+                "y": 4.5622182761917776
+            },
+            "prerequisites": [
+                "223923700609"
+            ]
+        },
+        {
+            "id": "264156526733",
+            "name": "45 deg V-sit",
+            "difficulty": 6,
+            "description": "",
+            "subset": "L-sit",
+            "category": "Gymnastics",
+            "position": {
+                "x": -38.96325638573966,
+                "y": -2.2811091380958888
+            },
+            "prerequisites": [
+                "229021993285"
+            ]
+        },
+        {
+            "id": "190752549907",
+            "name": "75 deg V-sit",
+            "difficulty": 7,
+            "description": "",
+            "subset": "L-sit",
+            "category": "Gymnastics",
+            "position": {
+                "x": -38.96325638573966,
+                "y": 11.405545690479443
+            },
+            "prerequisites": [
+                "264156526733"
+            ]
+        },
+        {
+            "id": "620839548960",
+            "name": "100 deg V-sit",
+            "difficulty": 8,
+            "description": "",
+            "subset": "L-sit",
+            "category": "Gymnastics",
+            "position": {
+                "x": -38.96325638573966,
+                "y": -6.843327414287667
+            },
+            "prerequisites": [
+                "190752549907"
+            ]
+        },
+        {
+            "id": "935490089539",
+            "name": "120 deg V-sit",
+            "difficulty": 9,
+            "description": "",
+            "subset": "L-sit",
+            "category": "Gymnastics",
+            "position": {
+                "x": -38.96325638573966,
+                "y": -4.5622182761917776
+            },
+            "prerequisites": [
+                "620839548960"
+            ]
+        },
+        {
+            "id": "646545646732",
+            "name": "140 deg V-sit",
+            "difficulty": 10,
+            "description": "",
+            "subset": "L-sit",
+            "category": "Gymnastics",
+            "position": {
+                "x": -38.96325638573966,
+                "y": -13.686654828575334
+            },
+            "prerequisites": [
+                "935490089539"
+            ]
+        },
+        {
+            "id": "407588311063",
+            "name": "155 deg V-sit",
+            "difficulty": 11,
+            "description": "",
+            "subset": "L-sit",
+            "category": "Gymnastics",
+            "position": {
+                "x": -38.96325638573966,
+                "y": -9.124436552383555
+            },
+            "prerequisites": [
+                "646545646732"
+            ]
+        },
+        {
+            "id": "507505070297",
+            "name": "170 deg V-sit",
+            "difficulty": 12,
+            "description": "",
+            "subset": "L-sit",
+            "category": "Gymnastics",
+            "position": {
+                "x": -38.96325638573966,
+                "y": 0.0
+            },
+            "prerequisites": [
+                "407588311063"
+            ]
+        },
+        {
+            "id": "138342843618",
+            "name": "Manna",
+            "difficulty": 13,
+            "description": "",
+            "subset": "L-sit",
+            "category": "Gymnastics",
+            "position": {
+                "x": -38.96325638573966,
+                "y": 13.686654828575334
+            },
+            "prerequisites": [
+                "507505070297"
+            ]
+        },
+        {
+            "id": "145983633907",
+            "name": "Bent-Arm Bent-Body Press",
+            "difficulty": 5,
+            "description": "",
+            "subset": "Press Handstand",
+            "category": "Gymnastics",
+            "position": {
+                "x": -36.68214724764377,
+                "y": -3.4216637071438334
+            },
+            "prerequisites": [
+                "149740473501"
+            ]
+        },
+        {
+            "id": "227890745518",
+            "name": "L-Sit Bent-Arm Bent-Body Press",
+            "difficulty": 6,
+            "description": "",
+            "subset": "Press Handstand",
+            "category": "Gymnastics",
+            "position": {
+                "x": -36.68214724764377,
+                "y": 1.1405545690479444
+            },
+            "prerequisites": [
+                "145983633907"
+            ]
+        },
+        {
+            "id": "117394983836",
+            "name": "CR Straight-Body Press",
+            "difficulty": 7,
+            "description": "",
+            "subset": "Press Handstand",
+            "category": "Gymnastics",
+            "position": {
+                "x": -36.68214724764377,
+                "y": 5.702772845239721
+            },
+            "prerequisites": [
+                "227890745518"
+            ]
+        },
+        {
+            "id": "313515711204",
+            "name": "Bent-Arm Straight-Body Press",
+            "difficulty": 8,
+            "description": "",
+            "subset": "Press Handstand",
+            "category": "Gymnastics",
+            "position": {
+                "x": -36.68214724764377,
+                "y": -1.1405545690479444
+            },
+            "prerequisites": [
+                "117394983836"
+            ]
+        },
+        {
+            "id": "326047724714",
+            "name": "Handstand Elbow Lever Handstand",
+            "difficulty": 9,
+            "description": "",
+            "subset": "Press Handstand",
+            "category": "Gymnastics",
+            "position": {
+                "x": -36.68214724764377,
+                "y": -5.702772845239721
+            },
+            "prerequisites": [
+                "313515711204"
+            ]
+        },
+        {
+            "id": "190642473257",
+            "name": "Parallel Bars Dip Straight-Body to Handstand",
+            "difficulty": 10,
+            "description": "",
+            "subset": "Press Handstand",
+            "category": "Gymnastics",
+            "position": {
+                "x": -36.68214724764377,
+                "y": 3.4216637071438334
+            },
+            "prerequisites": [
+                "326047724714"
+            ]
+        },
+        {
+            "id": "357791204748",
+            "name": "Wall Straddle Press Ecc",
+            "difficulty": 5,
+            "description": "",
+            "subset": "Straight Arm Press Handstand",
+            "category": "Gymnastics",
+            "position": {
+                "x": -34.40103810954788,
+                "y": 1.1405545690479444
+            },
+            "prerequisites": [
+                "145983633907"
+            ]
+        },
+        {
+            "id": "260756944031",
+            "name": "Elevated Straddle Stand Straddle Press",
+            "difficulty": 6,
+            "description": "",
+            "subset": "Straight Arm Press Handstand",
+            "category": "Gymnastics",
+            "position": {
+                "x": -34.40103810954788,
+                "y": -1.1405545690479444
+            },
+            "prerequisites": [
+                "357791204748"
+            ]
+        },
+        {
+            "id": "349942872681",
+            "name": "Straddle / Pike Stand Press",
+            "difficulty": 7,
+            "description": "",
+            "subset": "Straight Arm Press Handstand",
+            "category": "Gymnastics",
+            "position": {
+                "x": -34.40103810954788,
+                "y": 7.983881983335611
+            },
+            "prerequisites": [
+                "260756944031"
+            ]
+        },
+        {
+            "id": "897460512262",
+            "name": "L-sit / Straddle-L Straddle Press",
+            "difficulty": 8,
+            "description": "",
+            "subset": "Straight Arm Press Handstand",
+            "category": "Gymnastics",
+            "position": {
+                "x": -34.40103810954788,
+                "y": -7.983881983335611
+            },
+            "prerequisites": [
+                "349942872681"
+            ]
+        },
+        {
+            "id": "198977519648",
+            "name": "L-sit / Straddle-L Pike Press",
+            "difficulty": 9,
+            "description": "",
+            "subset": "Straight Arm Press Handstand",
+            "category": "Gymnastics",
+            "position": {
+                "x": -34.40103810954788,
+                "y": 3.4216637071438334
+            },
+            "prerequisites": [
+                "897460512262"
+            ]
+        },
+        {
+            "id": "167226929049",
+            "name": "Ring Straight-Arm L-sit Straddle Press",
+            "difficulty": 10,
+            "description": "",
+            "subset": "Straight Arm Press Handstand",
+            "category": "Gymnastics",
+            "position": {
+                "x": -34.40103810954788,
+                "y": -3.4216637071438334
+            },
+            "prerequisites": [
+                "198977519648"
+            ]
+        },
+        {
+            "id": "102144288081",
+            "name": "Ring Straight-Arm Straddle-L Straddle Press",
+            "difficulty": 11,
+            "description": "",
+            "subset": "Straight Arm Press Handstand",
+            "category": "Gymnastics",
+            "position": {
+                "x": -34.40103810954788,
+                "y": 5.702772845239721
+            },
+            "prerequisites": [
+                "167226929049"
+            ]
+        },
+        {
+            "id": "324059087092",
+            "name": "Ring Straight-Arm Pike Press",
+            "difficulty": 12,
+            "description": "",
+            "subset": "Straight Arm Press Handstand",
+            "category": "Gymnastics",
+            "position": {
+                "x": -34.40103810954788,
+                "y": -5.702772845239721
+            },
+            "prerequisites": [
+                "102144288081"
+            ]
+        },
+        {
+            "id": "463511785155",
+            "name": "Ring Wide Handstand Pushup",
+            "difficulty": 7,
+            "description": "",
+            "subset": "Ring Handstand Pushup",
+            "category": "Gymnastics",
+            "position": {
+                "x": -32.119928971452,
+                "y": -2.2811091380958888
+            },
+            "prerequisites": [
+                "236725833581"
+            ]
+        }
+    ],
+    "dependencies": [
+        "188209887004",
+        "141726027857",
+        "141726027857",
+        "338320143940",
+        "180817285462",
+        "141726027857",
+        "780986276249",
+        "214924955840",
+        "784936015789",
+        "181393126355",
+        "305080501640",
+        "333339378056",
+        "267770151368",
+        "216074226863",
+        "262262147178",
+        "149740473501",
+        "117154747612",
+        "143989927686",
+        "251807276184",
+        "845014886101",
+        "811565907974",
+        "225235361110",
+        "143827095920",
+        "239497681577",
+        "223923700609",
+        "229021993285",
+        "264156526733",
+        "190752549907",
+        "620839548960",
+        "935490089539",
+        "646545646732",
+        "407588311063",
+        "507505070297",
+        "149740473501",
+        "145983633907",
+        "227890745518",
+        "117394983836",
+        "313515711204",
+        "326047724714",
+        "145983633907",
+        "357791204748",
+        "260756944031",
+        "349942872681",
+        "897460512262",
+        "198977519648",
+        "167226929049",
+        "102144288081",
+        "236725833581"
+    ],
+    "categories": [
+        "Gymnastics"
+    ],
+    "difficulties": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+    ],
+    "metadata": {}
+}

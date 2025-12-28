@@ -1,0 +1,1428 @@
+[
+    {
+        "Handstand": [
+            {
+                "name": "Wall Handstand",
+                "difficulty": 1
+            },
+            {
+                "name": "Free Handstand",
+                "difficulty": 4
+            },
+            {
+                "name": "One Arm Handstand",
+                "difficulty": 10
+            }
+        ],
+        "Ring Handstand": [
+            {
+                "name": "Ring Shoulder Stand",
+                "difficulty": 5
+            },
+            {
+                "name": "Ring Strap Handstand",
+                "difficulty": 6
+            },
+            {
+                "name": "Ring Handstand",
+                "difficulty": 7
+            }
+        ],
+        "Handstand Pushups": [
+            {
+                "name": "Pike Headstand Pushup",
+                "difficulty": 1
+            },
+            {
+                "name": "Box Headstand Pushup",
+                "difficulty": 2
+            },
+            {
+                "name": "Wall Headstand Pushup Ecc",
+                "difficulty": 3
+            },
+            {
+                "name": "Wall Headstand Pushup",
+                "difficulty": 4
+            },
+            {
+                "name": "Wall Handstand Pushup",
+                "difficulty": 5
+            },
+            {
+                "name": "Free Headstand Pushup",
+                "difficulty": 6
+            },
+            {
+                "name": "Free Handstand Pushup",
+                "difficulty": 7
+            }
+        ],
+        "Chest Press": [
+            {
+                "name": "Chest Press .3x BW",
+                "difficulty": 2
+            },
+            {
+                "name": "Chest Press .43x BW",
+                "difficulty": 3
+            },
+            {
+                "name": "Chest Press .55x BW",
+                "difficulty": 4
+            },
+            {
+                "name": "Chest Press .68x BW",
+                "difficulty": 5
+            },
+            {
+                "name": "Chest Press .8x BW",
+                "difficulty": 6
+            },
+            {
+                "name": "Chest Press .9x BW",
+                "difficulty": 7
+            },
+            {
+                "name": "Chest Press 1x BW",
+                "difficulty": 8
+            },
+            {
+                "name": "Chest Press 1.08x BW",
+                "difficulty": 9
+            },
+            {
+                "name": "Chest Press 1.15x BW",
+                "difficulty": 10
+            },
+            {
+                "name": "Chest Press 1.2x BW",
+                "difficulty": 11
+            }
+        ],
+        "L-sit": [
+            {
+                "name": "Tuck L-sit",
+                "difficulty": 1
+            },
+            {
+                "name": "1 Leg Bent L-sit",
+                "difficulty": 2
+            },
+            {
+                "name": "L-sit",
+                "difficulty": 3
+            },
+            {
+                "name": "Straddle L-sit",
+                "difficulty": 4
+            },
+            {
+                "name": "Ring Turned Out L-sit",
+                "difficulty": 5
+            },
+            {
+                "name": "45 deg V-sit",
+                "difficulty": 6
+            },
+            {
+                "name": "75 deg V-sit",
+                "difficulty": 7
+            },
+            {
+                "name": "100 deg V-sit",
+                "difficulty": 8
+            },
+            {
+                "name": "120 deg V-sit",
+                "difficulty": 9
+            },
+            {
+                "name": "140 deg V-sit",
+                "difficulty": 10
+            },
+            {
+                "name": "155 deg V-sit",
+                "difficulty": 11
+            },
+            {
+                "name": "170 deg V-sit",
+                "difficulty": 12
+            },
+            {
+                "name": "Manna",
+                "difficulty": 13
+            }
+        ],
+        "Press Handstand": [
+            {
+                "name": "Bent-Arm Bent-Body Press",
+                "difficulty": 5
+            },
+            {
+                "name": "L-Sit Bent-Arm Bent-Body Press",
+                "difficulty": 6
+            },
+            {
+                "name": "CR Straight-Body Press",
+                "difficulty": 7
+            },
+            {
+                "name": "Bent-Arm Straight-Body Press",
+                "difficulty": 8
+            },
+            {
+                "name": "Handstand Elbow Lever Handstand",
+                "difficulty": 9
+            },
+            {
+                "name": "Parallel Bars Dip Straight-Body to Handstand",
+                "difficulty": 10
+            }
+        ],
+        "Straight Arm Press Handstand": [
+            {
+                "name": "Wall Straddle Press Ecc",
+                "difficulty": 5
+            },
+            {
+                "name": "Elevated Straddle Stand Straddle Press",
+                "difficulty": 6
+            },
+            {
+                "name": "Straddle / Pike Stand Press",
+                "difficulty": 7
+            },
+            {
+                "name": "L-sit / Straddle-L Straddle Press",
+                "difficulty": 8
+            },
+            {
+                "name": "L-sit / Straddle-L Pike Press",
+                "difficulty": 9
+            },
+            {
+                "name": "Ring Straight-Arm L-sit Straddle Press",
+                "difficulty": 10
+            },
+            {
+                "name": "Ring Straight-Arm Straddle-L Straddle Press",
+                "difficulty": 11
+            },
+            {
+                "name": "Ring Straight-Arm Pike Press",
+                "difficulty": 12
+            }
+        ],
+        "Ring Handstand Pushup": [
+            {
+                "name": "Ring Wide Handstand Pushup",
+                "difficulty": 7
+            },
+            {
+                "name": "Ring Strap Handstand Pushup",
+                "difficulty": 8
+            },
+            {
+                "name": "Ring Free Handstand Pushup",
+                "difficulty": 9
+            }
+        ],
+        "Rings Press Handstand": [
+            {
+                "name": "Chair Press",
+                "difficulty": 6
+            },
+            {
+                "name": "Chair Illusion",
+                "difficulty": 7
+            },
+            {
+                "name": "Ring Bent-Arm Bent-Body Press",
+                "difficulty": 8
+            },
+            {
+                "name": "Ring Dip to Handstand",
+                "difficulty": 9
+            },
+            {
+                "name": "Ring Bent-Arm Straight-Body Press",
+                "difficulty": 10
+            },
+            {
+                "name": "Ring Handstand Elbow Lever Handstand",
+                "difficulty": 11
+            },
+            {
+                "name": "Ring Dip Straight-Body to Handstand",
+                "difficulty": 12
+            }
+        ],
+        "Back Lever": [
+            {
+                "name": "German Hang",
+                "difficulty": 1
+            },
+            {
+                "name": "Skin the Cat",
+                "difficulty": 2
+            },
+            {
+                "name": "Tuck Back Lever",
+                "difficulty": 3
+            },
+            {
+                "name": "Advanced Tuck Back Lever",
+                "difficulty": 4
+            },
+            {
+                "name": "Straddle Back Lever",
+                "difficulty": 5
+            },
+            {
+                "name": "Half Lay / 1 Leg Back Lever",
+                "difficulty": 6
+            },
+            {
+                "name": "Full Back Lever",
+                "difficulty": 7
+            },
+            {
+                "name": "Back Lever Pullout",
+                "difficulty": 8
+            },
+            {
+                "name": "German Hang Pullout",
+                "difficulty": 9
+            },
+            {
+                "name": "Bent-Arm Pull-up to Back Lever",
+                "difficulty": 10
+            },
+            {
+                "name": "Handstand Lower to Back Lever",
+                "difficulty": 11
+            }
+        ],
+        "Rows": [
+            {
+                "name": "Row Ecc",
+                "difficulty": 1
+            },
+            {
+                "name": "Ring Rows",
+                "difficulty": 2
+            },
+            {
+                "name": "Wide Rows",
+                "difficulty": 3
+            },
+            {
+                "name": "Archer Rows",
+                "difficulty": 4
+            },
+            {
+                "name": "Archer-in-Rows",
+                "difficulty": 5
+            },
+            {
+                "name": "Straddle One-Arm Rows",
+                "difficulty": 6
+            },
+            {
+                "name": "One-Arm Rows",
+                "difficulty": 7
+            }
+        ],
+        "Pull-ups": [
+            {
+                "name": "Jump Pull-ups",
+                "difficulty": 1
+            },
+            {
+                "name": "Bar Pull-up Ecc",
+                "difficulty": 2
+            },
+            {
+                "name": "Bar Pull-ups",
+                "difficulty": 3
+            },
+            {
+                "name": "L-Pull-ups",
+                "difficulty": 4
+            },
+            {
+                "name": "Pullover",
+                "difficulty": 5
+            }
+        ],
+        "Weighted Pull-ups": [
+            {
+                "name": "Assisted Pull-ups",
+                "difficulty": 2
+            },
+            {
+                "name": "Weighted Pull-ups 1x Bodyweight",
+                "difficulty": 3
+            },
+            {
+                "name": "Weighted Pull-ups 1.18x Bodyweight",
+                "difficulty": 4
+            },
+            {
+                "name": "Weighted Pull-ups 1.35x Bodyweight",
+                "difficulty": 5
+            },
+            {
+                "name": "Weighted Pull-ups 1.50x Bodyweight",
+                "difficulty": 6
+            },
+            {
+                "name": "Weighted Pull-ups 1.65x Bodyweight",
+                "difficulty": 7
+            },
+            {
+                "name": "Weighted Pull-ups 1.78x Bodyweight",
+                "difficulty": 8
+            },
+            {
+                "name": "Weighted Pull-ups 1.9x Bodyweight",
+                "difficulty": 9
+            },
+            {
+                "name": "Weighted Pull-ups 2x Bodyweight",
+                "difficulty": 10
+            },
+            {
+                "name": "Weighted Pull-ups 2.1x Bodyweight",
+                "difficulty": 11
+            }
+        ],
+        "Ring L-Pull-ups": [
+            {
+                "name": "Ring L-Pull-ups",
+                "difficulty": 4
+            },
+            {
+                "name": "Ring Wide Pull-ups",
+                "difficulty": 5
+            },
+            {
+                "name": "Ring Wide L-Pull-ups",
+                "difficulty": 6
+            },
+            {
+                "name": "Ring Archer Pull-ups",
+                "difficulty": 7
+            },
+            {
+                "name": "Ring One-Arm Chin Up Eccentric",
+                "difficulty": 8
+            },
+            {
+                "name": "Ring One-Arm Chin Up",
+                "difficulty": 9
+            },
+            {
+                "name": "Ring One-Arm Chin Up+15 lbs",
+                "difficulty": 10
+            },
+            {
+                "name": "Ring One-Arm Chin Up+25 lbs",
+                "difficulty": 11
+            }
+        ],
+        "Front Lever": [
+            {
+                "name": "Tuck Front Lever",
+                "difficulty": 4
+            },
+            {
+                "name": "Advanced Tuck Front Lever",
+                "difficulty": 5
+            },
+            {
+                "name": "Straddle Front Lever",
+                "difficulty": 6
+            },
+            {
+                "name": "Half lay / 1 Leg Front Lever",
+                "difficulty": 7
+            },
+            {
+                "name": "Full Front Lever",
+                "difficulty": 8
+            },
+            {
+                "name": "Front Lever to Inverted",
+                "difficulty": 9
+            },
+            {
+                "name": "Hang Pull to Inverted Hang",
+                "difficulty": 10
+            },
+            {
+                "name": "Circle Front Lever",
+                "difficulty": 11
+            }
+        ],
+        "Front Lever Row": [
+            {
+                "name": "Tuck Front Lever Row",
+                "difficulty": 5
+            },
+            {
+                "name": "Advanced Tuck Front Lever Row",
+                "difficulty": 6
+            },
+            {
+                "name": "Advanced Tuck Rope Climb Row",
+                "difficulty": 7
+            },
+            {
+                "name": "Straddle Front Lever Row",
+                "difficulty": 8
+            },
+            {
+                "name": "Straddle Front Lever Rope Climb Row",
+                "difficulty": 9
+            },
+            {
+                "name": "Full Front Lever Row",
+                "difficulty": 10
+            },
+            {
+                "name": "Front Lever Rope Climb Row",
+                "difficulty": 11
+            }
+        ],
+        "Iron Cross": [
+            {
+                "name": "Cross Progressions",
+                "difficulty": 9
+            },
+            {
+                "name": "Iron Cross Hold",
+                "difficulty": 10
+            },
+            {
+                "name": "Cross to Back Lever",
+                "difficulty": 11
+            },
+            {
+                "name": "Iron Cross Pullouts",
+                "difficulty": 13
+            },
+            {
+                "name": "Hang Pull to Back Lever",
+                "difficulty": 14
+            },
+            {
+                "name": "Butterfly Mount",
+                "difficulty": 15
+            },
+            {
+                "name": "Support to Hang to Cross",
+                "difficulty": 16
+            }
+        ],
+        "Pushups": [
+            {
+                "name": "Regular Pushups",
+                "difficulty": 1
+            },
+            {
+                "name": "Diamond Pushups",
+                "difficulty": 2
+            },
+            {
+                "name": "Ring wide Push Up",
+                "difficulty": 3
+            },
+            {
+                "name": "Ring Push Up",
+                "difficulty": 4
+            },
+            {
+                "name": "Ring Turned Out Pushups",
+                "difficulty": 5
+            },
+            {
+                "name": "Ring Turned Out Archer Push Up",
+                "difficulty": 6
+            },
+            {
+                "name": "Ring Turned Out 40 Deg Pseudo Planche Pushup",
+                "difficulty": 7
+            },
+            {
+                "name": "Ring Turned Out 60 Deg Pseudo Planche Pushup",
+                "difficulty": 8
+            },
+            {
+                "name": "Ring Turned Out Maltese Push Up",
+                "difficulty": 9
+            },
+            {
+                "name": "Wall Pseudo Planche Pushup",
+                "difficulty": 10
+            },
+            {
+                "name": "Ring Wall Pseudo Planche Pushup",
+                "difficulty": 11
+            },
+            {
+                "name": "Wall Maltese Push Up",
+                "difficulty": 12
+            },
+            {
+                "name": "Ring Wall Maltese Push Up",
+                "difficulty": 13
+            }
+        ],
+        "Ring Dips": [
+            {
+                "name": "Support Hold",
+                "difficulty": 1
+            },
+            {
+                "name": "Ring Turned Out Support",
+                "difficulty": 2
+            },
+            {
+                "name": "Ring Dips Ecc",
+                "difficulty": 3
+            },
+            {
+                "name": "Ring Dips",
+                "difficulty": 4
+            },
+            {
+                "name": "Ring L-Dips",
+                "difficulty": 5
+            },
+            {
+                "name": "Ring Wide Dips",
+                "difficulty": 6
+            },
+            {
+                "name": "Ring Turned Out 45 Deg Dips",
+                "difficulty": 7
+            },
+            {
+                "name": "Ring Turned Out 75 Deg Dips",
+                "difficulty": 8
+            },
+            {
+                "name": "Ring Turned Out 90 Deg Dips",
+                "difficulty": 9
+            },
+            {
+                "name": "Ring Turned Out 90 + 30 Dips",
+                "difficulty": 10
+            },
+            {
+                "name": "Ring Turned Out 90 + 50 Dips",
+                "difficulty": 11
+            },
+            {
+                "name": "Ring Turned Out 90 + 65 Dips",
+                "difficulty": 12
+            },
+            {
+                "name": "Ring Turned Out 90 + 75 Dips",
+                "difficulty": 13
+            },
+            {
+                "name": "Ring Turned Out 90 + 82 Dips",
+                "difficulty": 14
+            },
+            {
+                "name": "Ring Turned Out 90 + 86 Dips",
+                "difficulty": 15
+            },
+            {
+                "name": "Ring Turned Out 90 + 88 Dips",
+                "difficulty": 16
+            }
+        ],
+        "Dips": [
+            {
+                "name": "Parallel Bars Jump Dips",
+                "difficulty": 1
+            },
+            {
+                "name": "Parallel Bars Dips Ecc",
+                "difficulty": 2
+            },
+            {
+                "name": "Parallel Bars Dips",
+                "difficulty": 3
+            },
+            {
+                "name": "L-Dips",
+                "difficulty": 4
+            },
+            {
+                "name": "45 Deg Dips",
+                "difficulty": 5
+            },
+            {
+                "name": "Wall Bent-Body One-Arm Dips",
+                "difficulty": 6
+            },
+            {
+                "name": "Side Bent-Body One-Arm Dips",
+                "difficulty": 7
+            },
+            {
+                "name": "Wall Straight-Body One-Arm Dips",
+                "difficulty": 8
+            },
+            {
+                "name": "Side Straight-Body One-Arm Dips",
+                "difficulty": 9
+            }
+        ],
+        "Weighted Dips": [
+            {
+                "name": "Assisted Dips",
+                "difficulty": 2
+            },
+            {
+                "name": "Dips",
+                "difficulty": 3
+            },
+            {
+                "name": "Weighted Dips 1.2x BW",
+                "difficulty": 4
+            },
+            {
+                "name": "Weighted Dips 1.38x BW",
+                "difficulty": 5
+            },
+            {
+                "name": "Weighted Dips 1.55x BW",
+                "difficulty": 6
+            },
+            {
+                "name": "Weighted Dips 1.7x BW",
+                "difficulty": 7
+            },
+            {
+                "name": "Weighted Dips 1.85x BW",
+                "difficulty": 8
+            },
+            {
+                "name": "Weighted Dips 2x BW",
+                "difficulty": 9
+            },
+            {
+                "name": "Weighted Dips 2.13x BW",
+                "difficulty": 10
+            },
+            {
+                "name": "Weighted Dips 2.25x BW",
+                "difficulty": 11
+            },
+            {
+                "name": "Weighted Dips Maltese (L17)",
+                "difficulty": 16
+            }
+        ],
+        "Planche": [
+            {
+                "name": "Frog Stand",
+                "difficulty": 3
+            },
+            {
+                "name": "Straight-Arm Frog Stand",
+                "difficulty": 4
+            },
+            {
+                "name": "Tuck Planche",
+                "difficulty": 5
+            },
+            {
+                "name": "Advanced Tuck Planche",
+                "difficulty": 6
+            },
+            {
+                "name": "Straddle Planche",
+                "difficulty": 8
+            },
+            {
+                "name": "Half Lay / 1 Leg",
+                "difficulty": 9
+            },
+            {
+                "name": "Full Planche",
+                "difficulty": 11
+            },
+            {
+                "name": "Straight-Arm Straddle Planche to Handstand",
+                "difficulty": 12
+            },
+            {
+                "name": "Ring Straight-Arm Straddle Planche to Handstand",
+                "difficulty": 14
+            },
+            {
+                "name": "Ring Straight-Arm Straight-Body to Handstand",
+                "difficulty": 15
+            },
+            {
+                "name": "Ring Straight-Arm Planche to Handstand",
+                "difficulty": 16
+            }
+        ],
+        "Ring Planche": [
+            {
+                "name": "Ring Frog Stand",
+                "difficulty": 4
+            },
+            {
+                "name": "Ring Straight-Arm Frog Stand",
+                "difficulty": 5
+            },
+            {
+                "name": "Ring Tuck Planche",
+                "difficulty": 6
+            },
+            {
+                "name": "Ring Advanced Tuck Planche",
+                "difficulty": 8
+            },
+            {
+                "name": "Ring Straddle Planche",
+                "difficulty": 10
+            },
+            {
+                "name": "Half Lay / 1 Leg",
+                "difficulty": 12
+            },
+            {
+                "name": "Full Planche",
+                "difficulty": 14
+            }
+        ],
+        "Parallel Bar Planche Push Up": [
+            {
+                "name": "Tuck Planche Push Up",
+                "difficulty": 6
+            },
+            {
+                "name": "Advanced Tuck Planche Push Up",
+                "difficulty": 8
+            },
+            {
+                "name": "Straddle Planche Push Up",
+                "difficulty": 10
+            },
+            {
+                "name": "Half Lay / 1 Leg Planche Push Up",
+                "difficulty": 12
+            },
+            {
+                "name": "Full Planche Push Up",
+                "difficulty": 14
+            }
+        ],
+        "One-Arm Push Up": [
+            {
+                "name": "Elevated One-Arm Push Up",
+                "difficulty": 5
+            },
+            {
+                "name": "Straddle One-Arm Push Up",
+                "difficulty": 6
+            },
+            {
+                "name": "Ring Straddle One-Arm Push Up",
+                "difficulty": 7
+            },
+            {
+                "name": "Straight Body One-Arm Push Up",
+                "difficulty": 8
+            },
+            {
+                "name": "Ring Straight-Body One-Arm Push Up",
+                "difficulty": 9
+            }
+        ],
+        "Ring Planche Push Up": [
+            {
+                "name": "Ring Tuck Planche Push Up",
+                "difficulty": 8
+            },
+            {
+                "name": "Ring Advanced Tuck Planche Push Up",
+                "difficulty": 10
+            },
+            {
+                "name": "Ring Straddle Planche Push Up",
+                "difficulty": 12
+            },
+            {
+                "name": "Ring Half Lay / 1 Leg Planche Push Up",
+                "difficulty": 14
+            },
+            {
+                "name": "Ring Full Planche Push Up",
+                "difficulty": 16
+            }
+        ],
+        "Squats": [
+            {
+                "name": "Parallel Squat",
+                "difficulty": 1
+            },
+            {
+                "name": "Full Squat",
+                "difficulty": 2
+            },
+            {
+                "name": "Side to Side Squat",
+                "difficulty": 3
+            },
+            {
+                "name": "Pistol",
+                "difficulty": 4
+            },
+            {
+                "name": "Squats 1.2x BW Pistol",
+                "difficulty": 5
+            },
+            {
+                "name": "Squats 1.35x BW Pistol",
+                "difficulty": 6
+            },
+            {
+                "name": "Squats 1.5x BW Pistol",
+                "difficulty": 7
+            },
+            {
+                "name": "Squats 1.65x BW Pistol",
+                "difficulty": 8
+            },
+            {
+                "name": "Squats 1.8x BW Pistol",
+                "difficulty": 9
+            },
+            {
+                "name": "Squats 1.9x BW Pistol",
+                "difficulty": 10
+            },
+            {
+                "name": "Squats 2x BW Pistol",
+                "difficulty": 11
+            }
+        ],
+        "Muscle-Up": [
+            {
+                "name": "MU Negatives",
+                "difficulty": 3
+            },
+            {
+                "name": "Muscle-ups",
+                "difficulty": 5
+            },
+            {
+                "name": "Wide / No False Grip MU",
+                "difficulty": 6
+            },
+            {
+                "name": "Strict Bar MU",
+                "difficulty": 7
+            },
+            {
+                "name": "SFL MU ATPL / L-Sit MU",
+                "difficulty": 8
+            },
+            {
+                "name": "One-Arm Straight MU",
+                "difficulty": 9
+            },
+            {
+                "name": "Felge Bwd Straight-Body to Support",
+                "difficulty": 10
+            },
+            {
+                "name": "Front Lever MU Straddle Planche",
+                "difficulty": 11
+            },
+            {
+                "name": "Felge Bwd Straight-Body to Handstand",
+                "difficulty": 12
+            },
+            {
+                "name": "Straight-Body Rotation to Handstand",
+                "difficulty": 14
+            },
+            {
+                "name": "Butterfly Mount",
+                "difficulty": 15
+            },
+            {
+                "name": "(L17) Elevator",
+                "difficulty": 16
+            }
+        ],
+        "Ab Wheel": [
+            {
+                "name": "Ab Wheel 25s Plank",
+                "difficulty": 2
+            },
+            {
+                "name": "Ab Wheel 60s Plank",
+                "difficulty": 3
+            },
+            {
+                "name": "1 Arm 1 Leg Plank",
+                "difficulty": 4
+            },
+            {
+                "name": "Knees Ab Wheel",
+                "difficulty": 5
+            },
+            {
+                "name": "Ab Wheel Ramp",
+                "difficulty": 6
+            },
+            {
+                "name": "Ab Wheel Ecc",
+                "difficulty": 7
+            },
+            {
+                "name": "Full Ab Wheel",
+                "difficulty": 8
+            },
+            {
+                "name": "Ab Wheel + 20 lbs",
+                "difficulty": 9
+            },
+            {
+                "name": "One Arm Ab Wheel",
+                "difficulty": 10
+            }
+        ],
+        "Elbow Lever": [
+            {
+                "name": "Two-Arm Elbow Lever",
+                "difficulty": 5
+            },
+            {
+                "name": "Ring Two-Arm Elbow Lever",
+                "difficulty": 6
+            },
+            {
+                "name": "One-Arm Straddle Elbow Lever",
+                "difficulty": 7
+            },
+            {
+                "name": "One-Arm Straight-Body Elbow Lever",
+                "difficulty": 8
+            }
+        ],
+        "Flag": [
+            {
+                "name": "Tuck Flag",
+                "difficulty": 5
+            },
+            {
+                "name": "Advanced Tuck Flag",
+                "difficulty": 6
+            },
+            {
+                "name": "Straddle Flag",
+                "difficulty": 7
+            },
+            {
+                "name": "Full Flag",
+                "difficulty": 8
+            }
+        ],
+        "Rings Full Statics": [
+            {
+                "name": "Ring Turned Out L-Sit",
+                "difficulty": 5
+            },
+            {
+                "name": "Ring Turned Out Straddle-L",
+                "difficulty": 6
+            },
+            {
+                "name": "Back Lever",
+                "difficulty": 7
+            },
+            {
+                "name": "Front Lever",
+                "difficulty": 8
+            },
+            {
+                "name": "Ring 90 Deg V-Sit",
+                "difficulty": 9
+            },
+            {
+                "name": "Iron Cross / Straddle Planche",
+                "difficulty": 10
+            },
+            {
+                "name": "Full Planche",
+                "difficulty": 14
+            },
+            {
+                "name": "Inverted Cross",
+                "difficulty": 16
+            }
+        ],
+        "Rings Felge Skills": [
+            {
+                "name": "Ring Felge Fwd Tuck to Support",
+                "difficulty": 5
+            },
+            {
+                "name": "Ring Felge Fwd Pike / Felge Bwd Tuck",
+                "difficulty": 6
+            },
+            {
+                "name": "Ring Felge Bwd Pike to Support",
+                "difficulty": 7
+            },
+            {
+                "name": "Ring Felge Fwd Straight to Support",
+                "difficulty": 10
+            },
+            {
+                "name": "Ring Felge Bwd Straight to Support",
+                "difficulty": 11
+            },
+            {
+                "name": "Ring Felge Bwd Straight-Body to Handstand",
+                "difficulty": 12
+            },
+            {
+                "name": "Ring Felge Fwd Straight-Arm to Cross",
+                "difficulty": 13
+            },
+            {
+                "name": "Ring Felge Fwd Straight-Arm to Straddle Planche",
+                "difficulty": 14
+            },
+            {
+                "name": "Ring Felge Fwd Straight-Arm Straight-Body to Handstand",
+                "difficulty": 15
+            }
+        ],
+        "Glute Bridge": [
+            {
+                "name": "Glute Bridge",
+                "difficulty": 1
+            },
+            {
+                "name": "Elevated Shoulder Hip Thrust",
+                "difficulty": 2
+            },
+            {
+                "name": "1 Leg Glute Bridge",
+                "difficulty": 3
+            },
+            {
+                "name": "Elevated Shoulder 1 Leg Hip Thrust",
+                "difficulty": 4
+            },
+            {
+                "name": "Weighted Hip Thrusts",
+                "difficulty": 5
+            }
+        ],
+        "Nordic Curl": [
+            {
+                "name": "2 Leg hamstring slide",
+                "difficulty": 1
+            },
+            {
+                "name": "1 Leg hamstring slide ecc",
+                "difficulty": 2
+            },
+            {
+                "name": "1 Leg hamstring slide",
+                "difficulty": 3
+            },
+            {
+                "name": "Hip Hinge with Vertical Thighs",
+                "difficulty": 4
+            },
+            {
+                "name": "Slow Eccentric to the Ground",
+                "difficulty": 5
+            },
+            {
+                "name": "Full Natural Ham Curl",
+                "difficulty": 6
+            },
+            {
+                "name": "Ham Curl with Arms Overhead",
+                "difficulty": 7
+            },
+            {
+                "name": "Weighted Ham Curl",
+                "difficulty": 8
+            }
+        ],
+        "Shrimp Squat": [
+            {
+                "name": "Lunges",
+                "difficulty": 1
+            },
+            {
+                "name": "Split Squat (Chair)",
+                "difficulty": 2
+            },
+            {
+                "name": "Beginner Shrimp",
+                "difficulty": 3
+            },
+            {
+                "name": "Intermediate Shrimp",
+                "difficulty": 4
+            },
+            {
+                "name": "Advanced Shrimp",
+                "difficulty": 5
+            },
+            {
+                "name": "2 Hand Shrimp",
+                "difficulty": 6
+            },
+            {
+                "name": "Elevated / Deficit Advanced Shrimp",
+                "difficulty": 7
+            },
+            {
+                "name": "Elevated / Deficit 2H Shrimp",
+                "difficulty": 8
+            },
+            {
+                "name": "Weighted Ele. Int. Shrimp",
+                "difficulty": 9
+            }
+        ],
+        "Hanging Leg Raises": [
+            {
+                "name": "Floor tuck raises",
+                "difficulty": 1
+            },
+            {
+                "name": "Front Lever straight leg raise",
+                "difficulty": 2
+            },
+            {
+                "name": "Hang Bent Leg Toes to bar",
+                "difficulty": 3
+            },
+            {
+                "name": "Hang Straddle Leg Toes to bar",
+                "difficulty": 4
+            },
+            {
+                "name": "Windshield wipers / 360 HLR",
+                "difficulty": 5
+            },
+            {
+                "name": "Ankle Weight Toes to bar",
+                "difficulty": 6
+            }
+        ],
+        "Reverse Hyperextension": [
+            {
+                "name": "Full tuck Ring Hypers",
+                "difficulty": 2
+            },
+            {
+                "name": "90 Deg Bent Knee Ring Hypers",
+                "difficulty": 3
+            },
+            {
+                "name": "Full Reverse Hypers",
+                "difficulty": 4
+            },
+            {
+                "name": "Weighted Ring Hypers",
+                "difficulty": 5
+            }
+        ],
+        "Dragon Flag": [
+            {
+                "name": "Floor tuck raises",
+                "difficulty": 1
+            },
+            {
+                "name": "Front Lever straight leg raise",
+                "difficulty": 2
+            },
+            {
+                "name": "Tuck Eccentric",
+                "difficulty": 3
+            },
+            {
+                "name": "Advanced Tuck",
+                "difficulty": 4
+            },
+            {
+                "name": "One Leg / Straddle",
+                "difficulty": 5
+            },
+            {
+                "name": "Full Dragon Flag",
+                "difficulty": 6
+            },
+            {
+                "name": "Weighted Dragon Flag",
+                "difficulty": 7
+            }
+        ],
+        "Quad": [
+            {
+                "name": "Natural leg extension",
+                "difficulty": 4
+            },
+            {
+                "name": "Sissy squat",
+                "difficulty": 5
+            },
+            {
+                "name": "Matrix squat to floor",
+                "difficulty": 6
+            },
+            {
+                "name": "Elevated Matrix squat",
+                "difficulty": 7
+            },
+            {
+                "name": "One leg Matrix squat to horizontal",
+                "difficulty": 8
+            },
+            {
+                "name": "Natural one leg extension",
+                "difficulty": 9
+            },
+            {
+                "name": "One leg sissy squat to horizontal shin",
+                "difficulty": 10
+            },
+            {
+                "name": "One leg Matrix squat to floor (?)",
+                "difficulty": 11
+            }
+        ],
+        "Biceps": [
+            {
+                "name": "Incline pelican curl",
+                "difficulty": 5
+            },
+            {
+                "name": "Pelican curl",
+                "difficulty": 6
+            },
+            {
+                "name": "Feet elevated Pelican (Sup Back Lever)",
+                "difficulty": 7
+            },
+            {
+                "name": "Hefesto negative (Back Lever pullout)",
+                "difficulty": 8
+            },
+            {
+                "name": "Hefesto (German Hang pullout)",
+                "difficulty": 9
+            },
+            {
+                "name": "Back lever hefesto",
+                "difficulty": 10
+            },
+            {
+                "name": "Archer hefesto",
+                "difficulty": 11
+            },
+            {
+                "name": "Hand on wrist hefesto",
+                "difficulty": 12
+            }
+        ],
+        "Impossible Dip": [
+            {
+                "name": "Shoulder in front of wrist",
+                "difficulty": 4
+            },
+            {
+                "name": "Shoulder behind wrist",
+                "difficulty": 7
+            },
+            {
+                "name": "Shoulder above elbow",
+                "difficulty": 8
+            },
+            {
+                "name": "Shoulder behind elbow",
+                "difficulty": 10
+            },
+            {
+                "name": "Kowalik dip (from Parallel Bars VC)",
+                "difficulty": 15
+            }
+        ],
+        "One Arm Static": [
+            {
+                "name": "One-Arm back lever",
+                "difficulty": 8
+            },
+            {
+                "name": "One-Arm front lever",
+                "difficulty": 12
+            },
+            {
+                "name": "One-Arm dragon press",
+                "difficulty": 13
+            },
+            {
+                "name": "One-Arm planche",
+                "difficulty": 16
+            }
+        ],
+        "Victorian Cross": [
+            {
+                "name": "protracted VC on bars",
+                "difficulty": 9
+            },
+            {
+                "name": "dragon press",
+                "difficulty": 10
+            },
+            {
+                "name": "VC on bars",
+                "difficulty": 11
+            },
+            {
+                "name": "wide VC on bars",
+                "difficulty": 13
+            },
+            {
+                "name": "floor VC one forearm",
+                "difficulty": 14
+            },
+            {
+                "name": "ring VC",
+                "difficulty": 15
+            },
+            {
+                "name": "floor VC on forearms",
+                "difficulty": 16
+            },
+            {
+                "name": "floor VC straight arms",
+                "difficulty": 17
+            }
+        ]
+    }
+]

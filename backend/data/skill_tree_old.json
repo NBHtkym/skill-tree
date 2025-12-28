@@ -1,0 +1,1176 @@
+{
+  "exercises": [
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-5",
+      "name": "Seated Good morning",
+      "description": "Perform the Seated Good morning exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Upper Body",
+      "position": {
+        "x": 120.0,
+        "y": -1670.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-16",
+      "name": "Pancake",
+      "description": "Perform the Pancake exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Upper Body",
+      "position": {
+        "x": 120.0,
+        "y": -1800.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-19",
+      "name": "Straddle Jefferson curl",
+      "description": "Perform the Straddle Jefferson curl exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Upper Body",
+      "position": {
+        "x": 120.0,
+        "y": -1560.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-20",
+      "name": "Middle Splits",
+      "description": "Perform the Middle Splits exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Core",
+      "position": {
+        "x": 120.0,
+        "y": -1450.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-21",
+      "name": "Straddle Planche",
+      "description": "Perform the Straddle Planche exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Core",
+      "position": {
+        "x": 120.0,
+        "y": -1330.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-22",
+      "name": "Straddle lever",
+      "description": "Perform the Straddle lever exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Core",
+      "position": {
+        "x": 120.0,
+        "y": -1210.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-23",
+      "name": "Cossack Squat",
+      "description": "Perform the Cossack Squat exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Core",
+      "position": {
+        "x": 380.0,
+        "y": -1450.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-24",
+      "name": "Bridge",
+      "description": "Perform the Bridge exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Upper Body",
+      "position": {
+        "x": 425.0,
+        "y": -1650.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-56",
+      "name": "Front Lever",
+      "description": "Perform the Front Lever exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 1525.0,
+        "y": 920.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-57",
+      "name": "Balance. E.g. hand stand stuff and dips",
+      "description": "Perform the Balance. E.g. hand stand stuff and dips exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": -320.0,
+        "y": 1080.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-67",
+      "name": "Nordic Curl",
+      "description": "Perform the Nordic Curl exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Mobility",
+      "position": {
+        "x": 190.0,
+        "y": -2340.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-70",
+      "name": "Plyometrics",
+      "description": "Perform the Plyometrics exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Mobility",
+      "position": {
+        "x": -390.0,
+        "y": -2760.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-81",
+      "name": "Deep Squat",
+      "description": "Perform the Deep Squat exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Mobility",
+      "position": {
+        "x": -90.0,
+        "y": -2380.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-84",
+      "name": "Running",
+      "description": "Perform the Running exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Mobility",
+      "position": {
+        "x": -340.0,
+        "y": -2380.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-86",
+      "name": "Walking",
+      "description": "Perform the Walking exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Mobility",
+      "position": {
+        "x": -340.0,
+        "y": -2630.0
+      },
+      "prerequisites": [
+        "XpEVwjTM-4CrbbQtxCPe-79"
+      ]
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-88",
+      "name": "BW Squat",
+      "description": "Perform the BW Squat exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Mobility",
+      "position": {
+        "x": 120.0,
+        "y": -2510.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-90",
+      "name": "Pogo Hops",
+      "description": "Perform the Pogo Hops exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Mobility",
+      "position": {
+        "x": -640.0,
+        "y": -2630.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-91",
+      "name": "Jumping",
+      "description": "Perform the Jumping exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Mobility",
+      "position": {
+        "x": -640.0,
+        "y": -2650.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-94",
+      "name": "Switches during Pogo Hops",
+      "description": "Perform the Switches during Pogo Hops exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Mobility",
+      "position": {
+        "x": -640.0,
+        "y": -2500.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-97",
+      "name": "Power Skips",
+      "description": "Perform the Power Skips exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Mobility",
+      "position": {
+        "x": -640.0,
+        "y": -2380.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-100",
+      "name": "Hurdle Hops",
+      "description": "Perform the Hurdle Hops exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Mobility",
+      "position": {
+        "x": -640.0,
+        "y": -2250.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-103",
+      "name": "Broad Jump w/ Sled",
+      "description": "Perform the Broad Jump w/ Sled exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Mobility",
+      "position": {
+        "x": -930.0,
+        "y": -2220.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-106",
+      "name": "Single leg jump",
+      "description": "Perform the Single leg jump exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Mobility",
+      "position": {
+        "x": -660.0,
+        "y": -2160.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-109",
+      "name": "Single leg stability",
+      "description": "Perform the Single leg stability exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Mobility",
+      "position": {
+        "x": -890.0,
+        "y": -2090.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-112",
+      "name": "Box Squat",
+      "description": "Perform the Box Squat with proper form.",
+      "difficulty": "medium",
+      "category": "Mobility",
+      "position": {
+        "x": 120.0,
+        "y": -2620.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-113",
+      "name": "Squat",
+      "description": "Perform the Squat exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Mobility",
+      "position": {
+        "x": 120.0,
+        "y": -2640.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-116",
+      "name": "Hand stand to full planche",
+      "description": "Perform the Hand stand to full planche exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 1520.0,
+        "y": 1110.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-119",
+      "name": "Inclined Push Up",
+      "description": "Perform the Inclined exercise with proper form.",
+      "difficulty": 0,
+      "category": "Lower Body",
+      "position": {
+        "x": 995.0,
+        "y": 58.5
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-120",
+      "name": "Push Up",
+      "description": "Perform the Push Up exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 995.0,
+        "y": 38.5
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-128",
+      "name": "Diamond Push Up",
+      "description": "Perform the Diamond Push Up with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 1240.0,
+        "y": 419.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-129",
+      "name": "Push Up",
+      "description": "Perform the Push Up exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 1240.0,
+        "y": 399.0
+      },
+      "prerequisites": [
+        "XpEVwjTM-4CrbbQtxCPe-125"
+      ]
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-131",
+      "name": "Wide Push Up",
+      "description": "Perform the Wide exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 995.0,
+        "y": 420.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-134",
+      "name": "Pseudo Planche w/ Wall",
+      "description": "Perform the Pseudo Planche w/ Wall exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 755.0,
+        "y": 420.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-138",
+      "name": "Straight Arm Plank",
+      "description": "Perform the Plank exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 545.0,
+        "y": 40.0
+      },
+      "prerequisites": ["XpEVwjTM-4CrbbQtxCPe-140"]
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-140",
+      "name": "Forearm Plank",
+      "description": "1 min",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 545.0,
+        "y": 180.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-146",
+      "name": "Rocking Plank",
+      "description": "Perform the Rocking exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 285.0,
+        "y": 299.5
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-150",
+      "name": "Side Forearm Plank",
+      "description": "Perform the Side exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 285.0,
+        "y": 60.0
+      },
+      "prerequisites": [
+      ]
+    },
+    {
+      "id": "XpEVTM-4CrbbQtxCPe-150",
+      "name": "Side Straight Arm Plank",
+      "description": "Perform the Side exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 285.0,
+        "y": 60.0
+      },
+      "prerequisites": [
+        "XpEVwjTM-4CrbbQtxCPe-150"
+      ]
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-164",
+      "name": "Pseudo Planche",
+      "description": "Perform the Pseudo Planche exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 755.0,
+        "y": 539.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-180",
+      "name": "Weighted Planche",
+      "description": "Perform the Weighted exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 3170.0,
+        "y": 589.5
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-187",
+      "name": "Tuck Planche",
+      "description": "Perform the Tuck Planche exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 755.0,
+        "y": 659.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-190",
+      "name": "Archer Pull Up",
+      "description": "Perform the Archer exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 995.0,
+        "y": 540.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-193",
+      "name": "Full Planche",
+      "description": "Perform the Full Planche exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 755.0,
+        "y": 778.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-196",
+      "name": "Wrists to Wall",
+      "description": "Perform the Wrists to Wall exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 1260.0,
+        "y": -751.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-197",
+      "name": "Foundation - Shoulder",
+      "description": "Perform the Foundation - Shoulder exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 1260.0,
+        "y": -770.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-198",
+      "name": "Flat back against wall and wrist to the wall overhead straight arm",
+      "description": "Perform the Flat back against wall and wrist to the wall overhead straight arm exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 1260.0,
+        "y": -710.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-201",
+      "name": "1-Arm Crab",
+      "description": "Perform the 1-Arm Crab exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 1260.0,
+        "y": -471.0
+      },
+      "prerequisites": [
+        "XpEVwjTM-4CrbbQtxCPe-288"
+      ]
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-204",
+      "name": "Scapular Pull Up",
+      "description": "Perform the Scapular exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 3170.0,
+        "y": -10.5
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-214",
+      "name": "Active Hang",
+      "description": "Perform the Active Hang exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 785.0,
+        "y": -388.5
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-226",
+      "name": "Negative Pull Up",
+      "description": "Perform the Negative (over chin) exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 3170.0,
+        "y": 109.5
+      },
+      "prerequisites": [
+        "XpEVwjTM-4CrbbQtxCPe-551"
+      ]
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-229",
+      "name": "Pull Up",
+      "description": "Perform the Full (over chin) exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 3170.0,
+        "y": 229.5
+      },
+      "prerequisites": [
+        "XpEVwjTM-4CrbbQtxCPe-554"
+      ]
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-232",
+      "name": "High Pull Up",
+      "description": "Perform the Full (over chest) exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 3170.0,
+        "y": 469.0
+      },
+      "prerequisites": [
+        "XpEVwjTM-4CrbbQtxCPe-229",
+        "XpEVwjTM-4CrbbQtxCPe-235"
+      ]
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-235",
+      "name": "Negative Pull Up (over chest)",
+      "description": "Perform the Negative (over chest) exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 3170.0,
+        "y": 349.5
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-248",
+      "name": "Leg Raise",
+      "description": "Perform the Leg Raise exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 40.0,
+        "y": 40.5
+      },
+      "prerequisites": [
+        "XpEVwjTM-4CrbbQtxCPe-220"
+      ]
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-259",
+      "name": "Wrist Mobility",
+      "description": "Perform the Wrist Mobility exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 465.0,
+        "y": -664.75
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-284",
+      "name": "Face Pull",
+      "description": "Perform the Face Pull exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 1010.0,
+        "y": -750.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-310",
+      "name": "Chin Up",
+      "description": "Perform the Chin Up exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 3360.0,
+        "y": -30.5
+      },
+      "prerequisites": [
+        "XpEVwjTM-4CrbbQtxCPe-220"
+      ]
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-337",
+      "name": "BW Good Morning",
+      "description": "Perform the BW Good Morning exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": -472.59000000000003,
+        "y": 60.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-340",
+      "name": "Romanian DL",
+      "description": "Perform the Romanian DL exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": -472.59000000000003,
+        "y": 180.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-349",
+      "name": "Jefferson Curl",
+      "description": "Perform the Jefferson Curl exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": -240.00000000000006,
+        "y": 181.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-371",
+      "name": "Lunge",
+      "description": "Perform the Lunge exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": -808.5,
+        "y": -619.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-377",
+      "name": "N-Hip Stretch",
+      "description": "Perform the N-Hip Stretch exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": -1332.5,
+        "y": -309.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-378",
+      "name": "Front Split",
+      "description": "Perform the Front Split exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": -1332.5,
+        "y": -329.0
+      },
+      "prerequisites": [
+        "XpEVwjTM-4CrbbQtxCPe-371"
+      ]
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-388",
+      "name": "Weighted Split",
+      "description": "Perform the Weighted Split exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": -1237.5,
+        "y": 61.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-452",
+      "name": "Goblet Squat",
+      "description": "Perform the Goblet exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": -957.5,
+        "y": 131.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-458",
+      "name": "Single Squat",
+      "description": "Perform the Single exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": -1267.5,
+        "y": 330.5
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-461",
+      "name": "Pistol Squat",
+      "description": "Perform the Pistol exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": -1147.5,
+        "y": 481.5
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-464",
+      "name": "Dragon Squat",
+      "description": "Perform the Dragon exercise with proper form.",
+      "difficulty": "advanced",
+      "category": "Lower Body",
+      "position": {
+        "x": -1382.5,
+        "y": 498.5
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-506",
+      "name": "Glute Bridge",
+      "description": "Perform the Glute Bridge exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": -2250.0,
+        "y": -268.5
+      },
+      "prerequisites": [
+        "XpEVwjTM-4CrbbQtxCPe-498"
+      ]
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-536",
+      "name": "Elevated Pike",
+      "description": "Perform the Elevated exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 1731.0,
+        "y": 459.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-537",
+      "name": "Pike",
+      "description": "Perform the Pike exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 1731.0,
+        "y": 439.0
+      },
+      "prerequisites": [
+        "XpEVwjTM-4CrbbQtxCPe-541"
+      ]
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-543",
+      "name": "Wall Face Hand Stand",
+      "description": "Perform the Wall Face exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 1731.0,
+        "y": 577.5
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-546",
+      "name": "Hand Stand",
+      "description": "Perform the Hand Stand exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 1601.0,
+        "y": 740.0
+      },
+      "prerequisites": [
+        "XpEVwjTM-4CrbbQtxCPe-545",
+        "XpEVwjTM-4CrbbQtxCPe-566"
+      ]
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-554",
+      "name": "Horizontal Row",
+      "description": "Perform the Horizontal exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 2930.0,
+        "y": 228.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-569",
+      "name": "Pike Lean",
+      "description": "Perform the Lean exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 1731.0,
+        "y": -20.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-572",
+      "name": "Pike Shrug",
+      "description": "Perform the Pike Shrug exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 1731.0,
+        "y": 98.5
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "XpEVwjTM-4CrbbQtxCPe-575",
+      "name": "Negative Pike",
+      "description": "Perform the Negative exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 1731.0,
+        "y": 218.5
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "2ObJ6Bs4mKQ7a13ncSD--2",
+      "name": "Ab Rollout",
+      "description": "Perform the Ab Rollout exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 545.0,
+        "y": 400.0
+      },
+      "prerequisites": [
+        "XpEVwjTM-4CrbbQtxCPe-145"
+      ]
+    },
+    {
+      "id": "2ObJ6Bs4mKQ7a13ncSD--27",
+      "name": "Dips",
+      "description": "Perform the Dips exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 2230.0,
+        "y": 271.0
+      },
+      "prerequisites": [
+        "2ObJ6Bs4mKQ7a13ncSD--36"
+      ]
+    },
+    {
+      "id": "2ObJ6Bs4mKQ7a13ncSD--37",
+      "name": "Support Hold",
+      "description": "Perform the Support Hold exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 2470.0,
+        "y": -19.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "2ObJ6Bs4mKQ7a13ncSD--41",
+      "name": "RTO Support Hold",
+      "description": "Perform the RTO Support Hold exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 2600.0,
+        "y": 171.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "2ObJ6Bs4mKQ7a13ncSD--92",
+      "name": "L-Dips",
+      "description": "Perform the L-Dips exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 2480.0,
+        "y": 291.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "2ObJ6Bs4mKQ7a13ncSD--103",
+      "name": "Ring Push Up",
+      "description": "Perform the Ring Push Up exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 1240.0,
+        "y": 519.0
+      },
+      "prerequisites": [
+        "XpEVwjTM-4CrbbQtxCPe-130"
+      ]
+    },
+    {
+      "id": "2ObJ6Bs4mKQ7a13ncSD--111",
+      "name": "RTO",
+      "description": "Perform the RTO exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 1240.0,
+        "y": 780.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "2ObJ6Bs4mKQ7a13ncSD--116",
+      "name": "RTO Archer",
+      "description": "Perform the RTO Archer exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 1240.0,
+        "y": 900.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "2ObJ6Bs4mKQ7a13ncSD--120",
+      "name": "OHP",
+      "description": "Perform the OHP exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Form",
+      "position": {
+        "x": 1960.0,
+        "y": 139.5
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "1sSKy8t-8IKBdzTIA-7G-1",
+      "name": "Arms OH Deep",
+      "description": "Perform the Arms OH Deep exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": -668.5,
+        "y": -228.5
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "1sSKy8t-8IKBdzTIA-7G-5",
+      "name": "Middle Splits Get Ups",
+      "description": "Perform the Middle Splits Get Ups exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Core",
+      "position": {
+        "x": -160.0,
+        "y": -1450.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "1sSKy8t-8IKBdzTIA-7G-12",
+      "name": "Straddle Good Morning",
+      "description": "Perform the Straddle Good Morning exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": -700.0,
+        "y": 180.5
+      },
+      "prerequisites": [
+        "XpEVwjTM-4CrbbQtxCPe-340"
+      ]
+    },
+    {
+      "id": "cpQ7pnT3juqbu5rzSlN7-5",
+      "name": "Forehead to the ground in Butterfly",
+      "description": "Perform the Forehead to the ground in Butterfly exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Core",
+      "position": {
+        "x": 890.0,
+        "y": -1220.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "cpQ7pnT3juqbu5rzSlN7-11",
+      "name": "Hands to the floor",
+      "description": "Perform the Hands to the floor exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Core",
+      "position": {
+        "x": 1100.0,
+        "y": -1220.0
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "9-fUZEh8lufZ8CPA3H5g-4",
+      "name": "Bird Dog",
+      "description": "Perform the Bird Dog exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 3720.0,
+        "y": -18.5
+      },
+      "prerequisites": []
+    },
+    {
+      "id": "9-fUZEh8lufZ8CPA3H5g-7",
+      "name": "Knee Ab Rollout",
+      "description": "Perform the Knee Ab Rollout exercise with proper form.",
+      "difficulty": "medium",
+      "category": "Lower Body",
+      "position": {
+        "x": 3720.0,
+        "y": 108.0
+      },
+      "prerequisites": []
+    }
+  ],
+  "dependencies": [],
+  "categories": [
+    "Mobility",
+    "Lower Body",
+    "Upper Body",
+    "Core",
+    "Form"
+  ],
+  "difficulties": [
+    "beginner",
+    "intermediate",
+    "advanced"
+  ],
+  "metadata": {
+    "total_exercises": 392,
+    "total_dependencies": 93,
+    "generated_at": "2025-06-16T20:44:22.268097",
+    "source_file": "skill_tree.drawio.xml"
+  }
+}

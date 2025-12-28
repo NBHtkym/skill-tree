@@ -1,0 +1,235 @@
+/* Base styles */
+:root {
+  --primary-color: #4a90e2;
+  --secondary-color: #f5a623;
+  --background-color: #f9f9f9;
+  --text-color: #333;
+  --node-completed: #4caf50;
+  --node-available: #4a90e2;
+  --node-locked: #9e9e9e;
+  --upper-body-color: #FF5733;
+  --lower-body-color: #33A1FF;
+  --core-color: #33FF57;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+main {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Skill Tree Styles */
+.skill-tree-container {
+  width: 100%;
+  height: 80vh;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+#skill-tree-canvas {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: auto;
+}
+
+.skill-node {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 0.8rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 3px solid transparent;
+}
+
+.skill-node:hover {
+  transform: scale(1.1);
+  z-index: 10;
+}
+
+.skill-node.completed {
+  background-color: var(--node-completed);
+  border-color: #2e7d32;
+}
+
+.skill-node.available {
+  background-color: var(--node-available);
+  border-color: #1565c0;
+  animation: pulse 2s infinite;
+}
+
+.skill-node.locked {
+  background-color: var(--node-locked);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.skill-node.upper_body {
+  background-color: var(--upper-body-color);
+}
+
+.skill-node.lower_body {
+  background-color: var(--lower-body-color);
+}
+
+.skill-node.core {
+  background-color: var(--core-color);
+}
+
+.skill-connection {
+  position: absolute;
+  background-color: #ccc;
+  height: 4px;
+  transform-origin: left center;
+  z-index: 1;
+}
+
+.skill-connection.completed {
+  background-color: var(--node-completed);
+}
+
+/* Skill Details Panel */
+.skill-details {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 500px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  z-index: 100;
+}
+
+.skill-details.hidden {
+  display: none;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.skill-info {
+  margin: 1.5rem 0;
+}
+
+.action-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+  background-color: #3a7bc8;
+}
+
+.action-button:disabled {
+  background-color: var(--node-locked);
+  cursor: not-allowed;
+}
+
+/* Confetti Container */
+#confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(74, 144, 226, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(74, 144, 226, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(74, 144, 226, 0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .skill-node {
+    width: 80px;
+    height: 80px;
+    font-size: 0.7rem;
+  }
+  
+  .skill-details {
+    width: 95%;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .skill-node {
+    width: 60px;
+    height: 60px;
+    font-size: 0.6rem;
+  }
+  
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .user-stats {
+    margin-top: 0.5rem;
+  }
+}
