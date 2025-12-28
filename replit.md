@@ -28,10 +28,13 @@ python main.py
 ```
 
 ## Recent Changes
-- December 2025: Migrated to combined Flask server for Replit environment
+- December 2025: Consolidated duplicate project structure, removed legacy files
+- Fixed skill-tree.js zoom controls and node positioning to render within viewport
+- Migrated to combined Flask server for Replit environment
 - API base URL set to same-origin for unified server deployment
 - Added cache control headers to prevent stale content
 
 ## Notes
-- The skill tree visualization uses large coordinate positions; use zoom controls to navigate
+- Skill tree visualization auto-scales nodes to fit viewport
 - Progress is saved both to backend JSON files and localStorage as fallback
+- Use zoom buttons (+/-) and drag to navigate the skill tree

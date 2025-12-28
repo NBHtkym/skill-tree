@@ -103,7 +103,25 @@ const SkillTree = (function() {
             })
             .catch(error => {
                 console.error('Error loading skill tree data from API:', error);
-                createPlaceholderSkillTree();
+                console.log('Falling back to local data...');
+                
+                // Fallback to local data file
+                fetch('/backend/data/skill_tree.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        skillTreeData = data;
+                        window.skillTreeData = data;
+                        renderSkillTree();
+                        
+                        const event = new CustomEvent('skillTreeDataLoaded', {
+                            detail: { data: skillTreeData }
+                        });
+                        document.dispatchEvent(event);
+                    })
+                    .catch(fallbackError => {
+                        console.error('Error loading local skill tree data:', fallbackError);
+                        createPlaceholderSkillTree();
+                    });
             });
     }
     
@@ -197,18 +215,13 @@ const SkillTree = (function() {
         });
         
         // Create connections after all nodes are created
-        setTimeout(() => {
-            skillTreeData.exercises.forEach(exercise => {
-                if (exercise.prerequisites && exercise.prerequisites.length > 0) {
-                    exercise.prerequisites.forEach(prereqId => {
-                        createConnection(prereqId, exercise.id);
-                    });
-                }
-            });
-        }, 50);
-        
-        // Center the view
-        resetView();
+        skillTreeData.exercises.forEach(exercise => {
+            if (exercise.prerequisites && exercise.prerequisites.length > 0) {
+                exercise.prerequisites.forEach(prereqId => {
+                    createConnection(prereqId, exercise.id);
+                });
+            }
+        });
     }
     
     /**
@@ -261,13 +274,11 @@ const SkillTree = (function() {
         
         if (!sourceNode || !targetNode) return;
         
-        const sourceRect = sourceNode.getBoundingClientRect();
-        const targetRect = targetNode.getBoundingClientRect();
-        
-        const sourceX = sourceRect.left + sourceRect.width / 2;
-        const sourceY = sourceRect.top + sourceRect.height / 2;
-        const targetX = targetRect.left + targetRect.width / 2;
-        const targetY = targetRect.top + targetRect.height / 2;
+        // Use the node's style left/top values (local coordinates) instead of getBoundingClientRect
+        const sourceX = parseFloat(sourceNode.style.left) + 30;
+        const sourceY = parseFloat(sourceNode.style.top) + 30;
+        const targetX = parseFloat(targetNode.style.left) + 30;
+        const targetY = parseFloat(targetNode.style.top) + 30;
         
         const dx = targetX - sourceX;
         const dy = targetY - sourceY;
@@ -283,6 +294,7 @@ const SkillTree = (function() {
         connection.style.left = `${sourceX}px`;
         connection.style.top = `${sourceY}px`;
         connection.style.transform = `rotate(${angle}deg)`;
+        connection.style.transformOrigin = '0 0';
         
         elements.skillTree.appendChild(connection);
     }

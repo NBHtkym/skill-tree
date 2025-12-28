@@ -50,6 +50,10 @@ def is_exercise_available(exercise_id, completed_exercises, dependencies):
 def index():
     return send_from_directory('frontend', 'index.html')
 
+@app.route('/backend/data/<path:filename>')
+def serve_backend_data(filename):
+    return send_from_directory(BACKEND_DATA_DIR, filename)
+
 @app.route('/api/skill-tree', methods=['GET'])
 def get_skill_tree():
     skill_tree = load_skill_tree()
