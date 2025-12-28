@@ -48,14 +48,14 @@ const SkillTree = (function() {
         // Zoom controls
         if (elements.zoomIn) {
             elements.zoomIn.addEventListener('click', () => {
-                zoomLevel = zoomLevel + 10000;
+                zoomLevel = Math.min(zoomLevel * 1.2, 3);
                 applyTransform();
             });
         }
         
         if (elements.zoomOut) {
             elements.zoomOut.addEventListener('click', () => {
-                zoomLevel = zoomLevel - 10000;
+                zoomLevel = Math.max(zoomLevel / 1.2, 0.1);
                 applyTransform();
             });
         }
@@ -103,27 +103,7 @@ const SkillTree = (function() {
             })
             .catch(error => {
                 console.error('Error loading skill tree data from API:', error);
-                console.log('Falling back to local data...');
-                
-                // Fallback to local data
-                fetch('/workout-skill-tree/backend/data/skill_tree.json')
-                    .then(response => response.json())
-                    .then(data => {
-                        skillTreeData = data;
-                        window.skillTreeData = data;
-                        renderSkillTree();
-                        
-                        // Dispatch event to notify other modules that data is loaded
-                        const event = new CustomEvent('skillTreeDataLoaded', {
-                            detail: { data: skillTreeData }
-                        });
-                        document.dispatchEvent(event);
-                    })
-                    // .catch(fallbackError => {
-                    //     console.error('Error loading local skill tree data:', fallbackError);
-                    //     // For development, create a placeholder skill tree as last resort
-                    //     createPlaceholderSkillTree();
-                    // });
+                createPlaceholderSkillTree();
             });
     }
     
@@ -184,24 +164,48 @@ const SkillTree = (function() {
         // Clear existing content
         elements.skillTree.innerHTML = '';
         
-        // Calculate center offset
+        // Calculate viewport dimensions
         const viewportRect = elements.viewport.getBoundingClientRect();
-        const centerX = viewportRect.width / 2;
-        const centerY = viewportRect.height / 2;
+        const viewportWidth = viewportRect.width;
+        const viewportHeight = viewportRect.height;
         
-        // Create nodes
+        // Calculate bounding box of all exercises
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
         skillTreeData.exercises.forEach(exercise => {
-            createNode(exercise, centerX, centerY);
+            if (exercise.position) {
+                minX = Math.min(minX, exercise.position.x);
+                maxX = Math.max(maxX, exercise.position.x);
+                minY = Math.min(minY, exercise.position.y);
+                maxY = Math.max(maxY, exercise.position.y);
+            }
+        });
+        
+        // Calculate scale and offset to fit all nodes in viewport with padding
+        const padding = 100;
+        const dataWidth = maxX - minX || 1;
+        const dataHeight = maxY - minY || 1;
+        const scaleX = (viewportWidth - padding * 2) / dataWidth;
+        const scaleY = (viewportHeight - padding * 2) / dataHeight;
+        const scale = Math.min(scaleX, scaleY, 1);
+        
+        const offsetX = padding - minX * scale + (viewportWidth - padding * 2 - dataWidth * scale) / 2;
+        const offsetY = padding - minY * scale + (viewportHeight - padding * 2 - dataHeight * scale) / 2;
+        
+        // Create nodes with normalized positions
+        skillTreeData.exercises.forEach(exercise => {
+            createNode(exercise, offsetX, offsetY, scale);
         });
         
         // Create connections after all nodes are created
-        skillTreeData.exercises.forEach(exercise => {
-            if (exercise.prerequisites && exercise.prerequisites.length > 0) {
-                exercise.prerequisites.forEach(prereqId => {
-                    createConnection(prereqId, exercise.id);
-                });
-            }
-        });
+        setTimeout(() => {
+            skillTreeData.exercises.forEach(exercise => {
+                if (exercise.prerequisites && exercise.prerequisites.length > 0) {
+                    exercise.prerequisites.forEach(prereqId => {
+                        createConnection(prereqId, exercise.id);
+                    });
+                }
+            });
+        }, 50);
         
         // Center the view
         resetView();
@@ -210,17 +214,18 @@ const SkillTree = (function() {
     /**
      * Create a node for an exercise
      * @param {Object} exercise - The exercise data
-     * @param {number} centerX - The center X coordinate of the viewport
-     * @param {number} centerY - The center Y coordinate of the viewport
+     * @param {number} offsetX - X offset for positioning
+     * @param {number} offsetY - Y offset for positioning
+     * @param {number} scale - Scale factor for positions
      */
-    function createNode(exercise, centerX, centerY) {
+    function createNode(exercise, offsetX, offsetY, scale) {
         const node = document.createElement('div');
         node.className = 'skill-node';
         node.dataset.id = exercise.id;
         
-        // Position the node
-        const x = centerX + exercise.position.x;
-        const y = centerY + exercise.position.y;
+        // Position the node with normalized coordinates
+        const x = exercise.position.x * scale + offsetX;
+        const y = exercise.position.y * scale + offsetY;
         node.style.left = `${x}px`;
         node.style.top = `${y}px`;
         
