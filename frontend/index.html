@@ -27,14 +27,53 @@
                     <span class="stat-label">Locked</span>
                 </div>
             </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#" class="active">Skill Tree</a></li>
-                    <li><a href="#">Progress</a></li>
-                    <li><a href="#">Settings</a></li>
-                </ul>
-            </nav>
+            <div class="auth-section">
+                <div id="auth-status" class="auth-status">
+                    <span id="user-email" class="user-email"></span>
+                    <button id="logout-btn" class="btn logout-btn" style="display: none;">Log Out</button>
+                    <button id="login-btn" class="btn login-btn">Log In</button>
+                </div>
+            </div>
         </header>
+
+        <div id="auth-modal" class="modal hidden">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Log In</button>
+                    <button class="auth-tab" data-tab="signup">Sign Up</button>
+                </div>
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" name="password" required placeholder="Enter password">
+                    </div>
+                    <div id="login-error" class="form-error hidden"></div>
+                    <button type="submit" class="btn primary-btn auth-submit">Log In</button>
+                </form>
+                <form id="signup-form" class="auth-form hidden">
+                    <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" name="password" required minlength="6" placeholder="At least 6 characters">
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-confirm">Confirm Password</label>
+                        <input type="password" id="signup-confirm" name="confirm" required placeholder="Confirm password">
+                    </div>
+                    <div id="signup-error" class="form-error hidden"></div>
+                    <button type="submit" class="btn primary-btn auth-submit">Sign Up</button>
+                </form>
+            </div>
+        </div>
 
         <main class="main-content fullscreen">
             <section class="skill-tree-container fullscreen">
@@ -86,6 +125,7 @@
         </main>
     </div>
 
+    <script src="js/auth.js" defer></script>
     <script src="js/skill-tree.js" defer></script>
     <script src="js/progress-tracker.js" defer></script>
     <script src="js/animations.js" defer></script>

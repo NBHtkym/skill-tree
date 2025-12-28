@@ -549,6 +549,7 @@ const ProgressTracker = (function() {
     // Public API
     return {
         init,
+        loadProgress,
         isExerciseCompleted,
         arePrerequisitesMet,
         completeExercise,

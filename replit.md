@@ -17,9 +17,13 @@ A web application for visualizing and tracking workout progression through a ski
 
 ## API Endpoints
 - `GET /api/skill-tree` - Returns skill tree data (exercises and their relationships)
-- `GET /api/progress` - Returns user progress
-- `POST /api/progress` - Update user progress (mark exercise complete/incomplete)
+- `GET /api/progress` - Returns user progress (requires authentication for saved progress)
+- `POST /api/progress` - Update user progress (requires authentication)
 - `GET /api/available-exercises` - Returns available exercises based on current progress
+- `POST /api/auth/signup` - Create new user account (email/password)
+- `POST /api/auth/login` - Log in with email/password
+- `POST /api/auth/logout` - Log out current user
+- `GET /api/auth/status` - Check authentication status
 
 ## Running the Application
 The application runs on port 5000 using Flask. Execute:
@@ -28,6 +32,11 @@ python main.py
 ```
 
 ## Recent Changes
+- December 2025: Added user authentication
+  - Email/password signup and login
+  - Separate progress tracking per user account
+  - PostgreSQL database for persistent user data
+  - Session-based authentication with Flask-Login
 - December 2025: Major UI/UX overhaul
   - Implemented hierarchical top-to-bottom layout (easier exercises at top, advanced at bottom)
   - Full-screen skill tree visualization with dark gradient background
@@ -36,6 +45,11 @@ python main.py
   - Legend overlay at top of skill tree
 - Consolidated duplicate project structure, removed legacy files
 - Migrated to combined Flask server for Replit environment
+
+## Database
+- PostgreSQL database stores user accounts and progress
+- Tables: `users` (id, email, password_hash, created_at), `user_progress` (id, user_id, completed_exercises, last_updated)
+- Connection via DATABASE_URL environment variable
 
 ## Notes
 - Nodes are automatically organized by difficulty/prerequisites (top-to-bottom)
