@@ -21,8 +21,8 @@ const SkillTree = (function() {
         AVAILABLE_EXERCISES: '/api/available-exercises'
     };
     
-    // Backend API base URL - change this to match your backend server
-    const API_BASE_URL = 'http://localhost:5050';
+    // Backend API base URL - same origin since frontend and backend are served together
+    const API_BASE_URL = '';
     
     // DOM elements cache
     const elements = {
