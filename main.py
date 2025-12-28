@@ -84,6 +84,9 @@ def get_all_exercises_and_deps(user_id=None):
     custom_exercises = []
     custom_dependencies = []
     
+    # Get base exercise IDs to avoid custom exercises overriding their prerequisites
+    base_exercise_ids = set(ex['id'] for ex in base_exercises)
+    
     if user_id:
         user_customs = CustomExercise.query.filter_by(user_id=user_id).all()
         for ce in user_customs:
@@ -101,11 +104,14 @@ def get_all_exercises_and_deps(user_id=None):
                     'source': prereq_id,
                     'target': ce.exercise_id
                 })
+            # Only add next_exercise dependencies if target is also a custom exercise
+            # Don't allow custom exercises to add prerequisites to base exercises
             for next_id in (ce.next_exercises or []):
-                custom_dependencies.append({
-                    'source': ce.exercise_id,
-                    'target': next_id
-                })
+                if next_id not in base_exercise_ids:
+                    custom_dependencies.append({
+                        'source': ce.exercise_id,
+                        'target': next_id
+                    })
     
     return base_exercises + custom_exercises, base_dependencies + custom_dependencies
 
@@ -257,9 +263,17 @@ def update_progress():
     if completed and exercise_id not in completed_exercises:
         exercise_exists = any(ex['id'] == exercise_id for ex in all_exercises)
         if not exercise_exists:
+            app.logger.error(f"Exercise not found: {exercise_id}")
+            app.logger.error(f"Available exercise IDs: {[ex['id'] for ex in all_exercises[:10]]}")
             abort(404, description=f"Exercise with ID {exercise_id} not found")
         
-        if not is_exercise_available(exercise_id, completed_exercises, all_dependencies):
+        is_avail = is_exercise_available(exercise_id, completed_exercises, all_dependencies)
+        if not is_avail:
+            # Debug logging
+            prereqs = [dep['source'] for dep in all_dependencies if dep['target'] == exercise_id]
+            app.logger.error(f"Prerequisites not met for {exercise_id}")
+            app.logger.error(f"Required prereqs: {prereqs}")
+            app.logger.error(f"Completed: {completed_exercises}")
             abort(400, description="Prerequisites for this exercise are not completed")
         
         completed_exercises.append(exercise_id)
