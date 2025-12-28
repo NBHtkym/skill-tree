@@ -90,8 +90,15 @@ const SkillTree = (function() {
         applyTransform();
     }
     
+    function getAuthHeaders() {
+        if (window.Auth && window.Auth.getAuthHeaders) {
+            return window.Auth.getAuthHeaders();
+        }
+        return { 'Content-Type': 'application/json' };
+    }
+    
     function loadSkillTreeData() {
-        fetch(`${API_BASE_URL}${API_ENDPOINTS.EXERCISES}`, { credentials: 'include' })
+        fetch(`${API_BASE_URL}${API_ENDPOINTS.EXERCISES}`, { credentials: 'include', headers: getAuthHeaders() })
             .then(response => {
                 if (!response.ok) throw new Error(`API error: ${response.status}`);
                 return response.json();
@@ -626,4 +633,9 @@ const SkillTree = (function() {
 
 document.addEventListener('DOMContentLoaded', function() {
     SkillTree.init();
+});
+
+// Reload skill tree when auth state changes to fetch user's custom exercises
+document.addEventListener('authStateChanged', function() {
+    SkillTree.reloadSkillTree();
 });
