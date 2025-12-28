@@ -16,10 +16,13 @@ A web application for visualizing and tracking workout progression through a ski
   - `data/user_progress.json` - User progress persistence
 
 ## API Endpoints
-- `GET /api/skill-tree` - Returns skill tree data (exercises and their relationships)
+- `GET /api/skill-tree` - Returns base skill tree data
+- `GET /api/exercises` - Returns all exercises including user's custom ones (authenticated)
 - `GET /api/progress` - Returns user progress (requires authentication for saved progress)
 - `POST /api/progress` - Update user progress (requires authentication)
 - `GET /api/available-exercises` - Returns available exercises based on current progress
+- `POST /api/exercises/create` - Create a custom exercise (requires authentication)
+- `DELETE /api/exercises/<id>` - Delete a custom exercise (requires authentication)
 - `POST /api/auth/signup` - Create new user account (email/password)
 - `POST /api/auth/login` - Log in with email/password
 - `POST /api/auth/logout` - Log out current user
@@ -32,6 +35,11 @@ python main.py
 ```
 
 ## Recent Changes
+- December 2025: Added custom exercise creation
+  - Logged-in users can create their own exercises
+  - Set prerequisites and next exercises for custom nodes
+  - Custom exercises appear in the skill tree
+  - Barycenter algorithm to minimize edge crossings
 - December 2025: Added user authentication
   - Email/password signup and login
   - Separate progress tracking per user account

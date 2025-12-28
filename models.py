@@ -29,3 +29,24 @@ class UserProgress(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, unique=True)
     completed_exercises = db.Column(db.JSON, default=list)
     last_updated = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+
+class CustomExercise(db.Model):
+    __tablename__ = 'custom_exercises'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    exercise_id = db.Column(db.String(100), nullable=False)
+    name = db.Column(db.String(200), nullable=False)
+    description = db.Column(db.Text, default='')
+    difficulty = db.Column(db.Integer, default=1)
+    category = db.Column(db.String(100), default='Custom')
+    prerequisites = db.Column(db.JSON, default=list)
+    next_exercises = db.Column(db.JSON, default=list)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    user = db.relationship('User', backref=db.backref('custom_exercises', lazy=True))
+    
+    __table_args__ = (
+        db.UniqueConstraint('user_id', 'exercise_id', name='unique_user_exercise'),
+    )

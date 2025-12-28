@@ -601,3 +601,104 @@ body {
     display: none;
   }
 }
+
+.create-exercise-btn {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.create-exercise-btn:hover {
+  background-color: var(--secondary-dark);
+  transform: scale(1.1);
+}
+
+.form-row {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.form-group textarea {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.2s;
+}
+
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.form-group select {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  font-size: 1rem;
+  background-color: white;
+  cursor: pointer;
+}
+
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.multi-select {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.multi-select-options {
+  padding: var(--spacing-xs);
+}
+
+.multi-select-option {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  cursor: pointer;
+  border-radius: var(--border-radius-sm);
+  transition: background-color 0.2s;
+}
+
+.multi-select-option:hover {
+  background-color: var(--light-bg);
+}
+
+.multi-select-option input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.multi-select-option label {
+  cursor: pointer;
+  flex: 1;
+  font-weight: normal;
+}
+
+.modal-content h2 {
+  margin-bottom: var(--spacing-lg);
+  color: var(--text-color);
+}
+
+.custom-node {
+  border: 2px dashed rgba(255, 255, 255, 0.5) !important;
+}

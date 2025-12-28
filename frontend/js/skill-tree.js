@@ -13,8 +13,10 @@ const SkillTree = (function() {
     
     const API_ENDPOINTS = {
         SKILL_TREE: '/api/skill-tree',
+        EXERCISES: '/api/exercises',
         PROGRESS: '/api/progress',
-        AVAILABLE_EXERCISES: '/api/available-exercises'
+        AVAILABLE_EXERCISES: '/api/available-exercises',
+        CREATE_EXERCISE: '/api/exercises/create'
     };
     
     const API_BASE_URL = '';
@@ -89,7 +91,7 @@ const SkillTree = (function() {
     }
     
     function loadSkillTreeData() {
-        fetch(`${API_BASE_URL}${API_ENDPOINTS.SKILL_TREE}`)
+        fetch(`${API_BASE_URL}${API_ENDPOINTS.EXERCISES}`, { credentials: 'include' })
             .then(response => {
                 if (!response.ok) throw new Error(`API error: ${response.status}`);
                 return response.json();
@@ -104,8 +106,8 @@ const SkillTree = (function() {
                 }));
             })
             .catch(error => {
-                console.error('Error loading skill tree data:', error);
-                fetch('/backend/data/skill_tree.json')
+                console.error('Error loading exercises, falling back to skill tree:', error);
+                fetch(`${API_BASE_URL}${API_ENDPOINTS.SKILL_TREE}`)
                     .then(response => response.json())
                     .then(data => {
                         skillTreeData = data;
@@ -117,6 +119,10 @@ const SkillTree = (function() {
                     })
                     .catch(() => createPlaceholderSkillTree());
             });
+    }
+    
+    function reloadSkillTree() {
+        loadSkillTreeData();
     }
     
     function createPlaceholderSkillTree() {
@@ -193,8 +199,84 @@ const SkillTree = (function() {
             });
         });
         
-        const positions = [];
         const maxLevel = Math.max(...Array.from(levels.keys()));
+        
+        function getBarycenter(nodeId, useParents) {
+            const node = exerciseMap.get(nodeId);
+            if (!node) return 0;
+            
+            let connectedNodes = [];
+            if (useParents && node.prerequisites) {
+                connectedNodes = node.prerequisites.filter(id => exerciseMap.has(id));
+            } else {
+                connectedNodes = node.children || [];
+            }
+            
+            if (connectedNodes.length === 0) return null;
+            
+            let sum = 0;
+            connectedNodes.forEach(connId => {
+                const connNode = exerciseMap.get(connId);
+                if (connNode && connNode.orderIndex !== undefined) {
+                    sum += connNode.orderIndex;
+                }
+            });
+            return sum / connectedNodes.length;
+        }
+        
+        levels.get(0)?.forEach((nodeId, index) => {
+            exerciseMap.get(nodeId).orderIndex = index;
+        });
+        
+        for (let pass = 0; pass < 4; pass++) {
+            for (let level = 1; level <= maxLevel; level++) {
+                const nodeIds = levels.get(level) || [];
+                nodeIds.forEach(nodeId => {
+                    const bc = getBarycenter(nodeId, true);
+                    if (bc !== null) {
+                        exerciseMap.get(nodeId).barycenter = bc;
+                    }
+                });
+                
+                nodeIds.sort((a, b) => {
+                    const bcA = exerciseMap.get(a).barycenter;
+                    const bcB = exerciseMap.get(b).barycenter;
+                    if (bcA === undefined && bcB === undefined) return 0;
+                    if (bcA === undefined) return 1;
+                    if (bcB === undefined) return -1;
+                    return bcA - bcB;
+                });
+                
+                nodeIds.forEach((nodeId, index) => {
+                    exerciseMap.get(nodeId).orderIndex = index;
+                });
+            }
+            
+            for (let level = maxLevel - 1; level >= 0; level--) {
+                const nodeIds = levels.get(level) || [];
+                nodeIds.forEach(nodeId => {
+                    const bc = getBarycenter(nodeId, false);
+                    if (bc !== null) {
+                        exerciseMap.get(nodeId).barycenter = bc;
+                    }
+                });
+                
+                nodeIds.sort((a, b) => {
+                    const bcA = exerciseMap.get(a).barycenter;
+                    const bcB = exerciseMap.get(b).barycenter;
+                    if (bcA === undefined && bcB === undefined) return 0;
+                    if (bcA === undefined) return 1;
+                    if (bcB === undefined) return -1;
+                    return bcA - bcB;
+                });
+                
+                nodeIds.forEach((nodeId, index) => {
+                    exerciseMap.get(nodeId).orderIndex = index;
+                });
+            }
+        }
+        
+        const positions = [];
         
         levels.forEach((nodeIds, level) => {
             const levelWidth = nodeIds.length * (NODE_WIDTH + HORIZONTAL_SPACING);
@@ -521,6 +603,7 @@ const SkillTree = (function() {
         updateSkillTree,
         resetView,
         updateStats,
+        reloadSkillTree,
         API_BASE_URL,
         API_ENDPOINTS
     };

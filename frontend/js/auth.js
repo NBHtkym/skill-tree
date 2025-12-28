@@ -194,6 +194,7 @@ const Auth = (function() {
         elements.loginBtn.style.display = 'none';
         elements.logoutBtn.style.display = 'inline-block';
         elements.userEmail.style.display = 'inline';
+        document.dispatchEvent(new CustomEvent('authStateChanged', { detail: { authenticated: true, user } }));
     }
     
     function setLoggedOut() {
@@ -202,6 +203,7 @@ const Auth = (function() {
         elements.loginBtn.style.display = 'inline-block';
         elements.logoutBtn.style.display = 'none';
         elements.userEmail.style.display = 'none';
+        document.dispatchEvent(new CustomEvent('authStateChanged', { detail: { authenticated: false } }));
     }
     
     function isLoggedIn() {

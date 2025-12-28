@@ -3,7 +3,7 @@ from flask import Flask, jsonify, request, abort, send_from_directory
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 import json
 from datetime import datetime
-from models import db, User, UserProgress
+from models import db, User, UserProgress, CustomExercise
 
 app = Flask(__name__, static_folder='frontend', static_url_path='')
 app.secret_key = os.environ.get("FLASK_SECRET_KEY") or os.urandom(24)
@@ -45,6 +45,39 @@ def is_exercise_available(exercise_id, completed_exercises, dependencies):
     if not prerequisites:
         return True
     return all(prereq in completed_exercises for prereq in prerequisites)
+
+def get_all_exercises_and_deps(user_id=None):
+    skill_tree = load_skill_tree()
+    base_exercises = skill_tree['exercises'] if skill_tree else []
+    base_dependencies = skill_tree.get('dependencies', []) if skill_tree else []
+    
+    custom_exercises = []
+    custom_dependencies = []
+    
+    if user_id:
+        user_customs = CustomExercise.query.filter_by(user_id=user_id).all()
+        for ce in user_customs:
+            custom_exercises.append({
+                'id': ce.exercise_id,
+                'name': ce.name,
+                'description': ce.description,
+                'difficulty': ce.difficulty,
+                'category': ce.category,
+                'prerequisites': ce.prerequisites or [],
+                'isCustom': True
+            })
+            for prereq_id in (ce.prerequisites or []):
+                custom_dependencies.append({
+                    'source': prereq_id,
+                    'target': ce.exercise_id
+                })
+            for next_id in (ce.next_exercises or []):
+                custom_dependencies.append({
+                    'source': ce.exercise_id,
+                    'target': next_id
+                })
+    
+    return base_exercises + custom_exercises, base_dependencies + custom_dependencies
 
 @app.route('/')
 def index():
@@ -169,9 +202,7 @@ def update_progress():
     if not exercise_id:
         abort(400, description="Exercise ID is required")
     
-    skill_tree = load_skill_tree()
-    if not skill_tree:
-        abort(500, description="Failed to load skill tree data")
+    all_exercises, all_dependencies = get_all_exercises_and_deps(current_user.id)
     
     progress = UserProgress.query.filter_by(user_id=current_user.id).first()
     if not progress:
@@ -181,18 +212,18 @@ def update_progress():
     completed_exercises = progress.completed_exercises or []
     
     if completed and exercise_id not in completed_exercises:
-        exercise_exists = any(ex['id'] == exercise_id for ex in skill_tree['exercises'])
+        exercise_exists = any(ex['id'] == exercise_id for ex in all_exercises)
         if not exercise_exists:
             abort(404, description=f"Exercise with ID {exercise_id} not found")
         
-        if not is_exercise_available(exercise_id, completed_exercises, skill_tree.get('dependencies', [])):
+        if not is_exercise_available(exercise_id, completed_exercises, all_dependencies):
             abort(400, description="Prerequisites for this exercise are not completed")
         
         completed_exercises.append(exercise_id)
     elif not completed and exercise_id in completed_exercises:
         dependent_exercises = []
         for ex_id in completed_exercises:
-            if ex_id != exercise_id and not is_exercise_available(ex_id, [e for e in completed_exercises if e != exercise_id], skill_tree.get('dependencies', [])):
+            if ex_id != exercise_id and not is_exercise_available(ex_id, [e for e in completed_exercises if e != exercise_id], all_dependencies):
                 dependent_exercises.append(ex_id)
         
         if dependent_exercises:
@@ -214,9 +245,8 @@ def update_progress():
 
 @app.route('/api/available-exercises', methods=['GET'])
 def get_available_exercises():
-    skill_tree = load_skill_tree()
-    if not skill_tree:
-        abort(500, description="Failed to load skill tree data")
+    user_id = current_user.id if current_user.is_authenticated else None
+    all_exercises, all_dependencies = get_all_exercises_and_deps(user_id)
     
     completed_exercises = []
     if current_user.is_authenticated:
@@ -225,15 +255,88 @@ def get_available_exercises():
             completed_exercises = progress.completed_exercises or []
     
     available_exercises = []
-    for exercise in skill_tree['exercises']:
+    for exercise in all_exercises:
         exercise_id = exercise['id']
-        if exercise_id not in completed_exercises and is_exercise_available(exercise_id, completed_exercises, skill_tree.get('dependencies', [])):
+        if exercise_id not in completed_exercises and is_exercise_available(exercise_id, completed_exercises, all_dependencies):
             available_exercises.append(exercise)
     
     return jsonify({
         'available_exercises': available_exercises,
         'completed_exercises': completed_exercises
     })
+
+@app.route('/api/exercises', methods=['GET'])
+def get_user_exercises():
+    user_id = current_user.id if current_user.is_authenticated else None
+    all_exercises, all_dependencies = get_all_exercises_and_deps(user_id)
+    
+    return jsonify({
+        'exercises': all_exercises,
+        'dependencies': all_dependencies
+    })
+
+@app.route('/api/exercises/create', methods=['POST'])
+def create_exercise():
+    if not current_user.is_authenticated:
+        return jsonify({'success': False, 'message': 'Please log in to create exercises'}), 401
+    
+    if not request.is_json:
+        return jsonify({'success': False, 'message': 'Request must be JSON'}), 400
+    
+    data = request.get_json()
+    name = data.get('name', '').strip()
+    
+    if not name:
+        return jsonify({'success': False, 'message': 'Exercise name is required'}), 400
+    
+    import uuid
+    exercise_id = f"custom_{current_user.id}_{uuid.uuid4().hex[:8]}"
+    
+    custom_exercise = CustomExercise(
+        user_id=current_user.id,
+        exercise_id=exercise_id,
+        name=name,
+        description=data.get('description', ''),
+        difficulty=data.get('difficulty', 1),
+        category=data.get('category', 'Custom'),
+        prerequisites=data.get('prerequisites', []),
+        next_exercises=data.get('next_exercises', [])
+    )
+    
+    db.session.add(custom_exercise)
+    db.session.commit()
+    
+    return jsonify({
+        'success': True,
+        'exercise': {
+            'id': exercise_id,
+            'name': name,
+            'description': custom_exercise.description,
+            'difficulty': custom_exercise.difficulty,
+            'category': custom_exercise.category,
+            'prerequisites': custom_exercise.prerequisites,
+            'next_exercises': custom_exercise.next_exercises,
+            'isCustom': True
+        }
+    })
+
+@app.route('/api/exercises/<exercise_id>', methods=['DELETE'])
+def delete_exercise(exercise_id):
+    if not current_user.is_authenticated:
+        return jsonify({'success': False, 'message': 'Please log in to delete exercises'}), 401
+    
+    custom_exercise = CustomExercise.query.filter_by(
+        user_id=current_user.id,
+        exercise_id=exercise_id
+    ).first()
+    
+    if not custom_exercise:
+        return jsonify({'success': False, 'message': 'Exercise not found'}), 404
+    
+    db.session.delete(custom_exercise)
+    db.session.commit()
+    
+    return jsonify({'success': True})
 
 @app.errorhandler(400)
 @app.errorhandler(401)
