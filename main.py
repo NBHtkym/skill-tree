@@ -71,7 +71,15 @@ def is_exercise_available(exercise_id, completed_exercises, dependencies):
 def get_all_exercises_and_deps(user_id=None):
     skill_tree = load_skill_tree()
     base_exercises = skill_tree['exercises'] if skill_tree else []
-    base_dependencies = skill_tree.get('dependencies', []) if skill_tree else []
+    
+    # Build dependencies from exercises' prerequisites
+    base_dependencies = []
+    for exercise in base_exercises:
+        for prereq_id in exercise.get('prerequisites', []):
+            base_dependencies.append({
+                'source': prereq_id,
+                'target': exercise['id']
+            })
     
     custom_exercises = []
     custom_dependencies = []
