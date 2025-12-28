@@ -269,8 +269,36 @@ const SkillTree = (function() {
             exerciseMap.get(nodeId).orderIndex = index;
         });
         
-        // Run more passes for better convergence with custom exercises
-        for (let pass = 0; pass < 6; pass++) {
+        // Count edge crossings between two adjacent levels
+        function countCrossings(level1Ids, level2Ids) {
+            let crossings = 0;
+            const edges = [];
+            
+            level2Ids.forEach((nodeId, pos2) => {
+                const node = exerciseMap.get(nodeId);
+                if (node.prerequisites) {
+                    node.prerequisites.forEach(prereqId => {
+                        const pos1 = level1Ids.indexOf(prereqId);
+                        if (pos1 !== -1) {
+                            edges.push({ from: pos1, to: pos2 });
+                        }
+                    });
+                }
+            });
+            
+            for (let i = 0; i < edges.length; i++) {
+                for (let j = i + 1; j < edges.length; j++) {
+                    if ((edges[i].from < edges[j].from && edges[i].to > edges[j].to) ||
+                        (edges[i].from > edges[j].from && edges[i].to < edges[j].to)) {
+                        crossings++;
+                    }
+                }
+            }
+            return crossings;
+        }
+        
+        // Run barycenter passes
+        for (let pass = 0; pass < 10; pass++) {
             for (let level = 1; level <= maxLevel; level++) {
                 const nodeIds = levels.get(level) || [];
                 nodeIds.forEach(nodeId => {
@@ -315,6 +343,44 @@ const SkillTree = (function() {
                 nodeIds.forEach((nodeId, index) => {
                     exerciseMap.get(nodeId).orderIndex = index;
                 });
+            }
+        }
+        
+        // Local swap optimization: try swapping adjacent nodes to reduce crossings
+        for (let level = 0; level <= maxLevel; level++) {
+            const nodeIds = levels.get(level) || [];
+            let improved = true;
+            let iterations = 0;
+            
+            while (improved && iterations < 20) {
+                improved = false;
+                iterations++;
+                
+                for (let i = 0; i < nodeIds.length - 1; i++) {
+                    const prevLevel = level > 0 ? (levels.get(level - 1) || []) : [];
+                    const nextLevel = level < maxLevel ? (levels.get(level + 1) || []) : [];
+                    
+                    const currentCrossings = 
+                        (prevLevel.length > 0 ? countCrossings(prevLevel, nodeIds) : 0) +
+                        (nextLevel.length > 0 ? countCrossings(nodeIds, nextLevel) : 0);
+                    
+                    // Try swapping
+                    [nodeIds[i], nodeIds[i + 1]] = [nodeIds[i + 1], nodeIds[i]];
+                    
+                    const newCrossings = 
+                        (prevLevel.length > 0 ? countCrossings(prevLevel, nodeIds) : 0) +
+                        (nextLevel.length > 0 ? countCrossings(nodeIds, nextLevel) : 0);
+                    
+                    if (newCrossings < currentCrossings) {
+                        improved = true;
+                        nodeIds.forEach((nodeId, index) => {
+                            exerciseMap.get(nodeId).orderIndex = index;
+                        });
+                    } else {
+                        // Swap back
+                        [nodeIds[i], nodeIds[i + 1]] = [nodeIds[i + 1], nodeIds[i]];
+                    }
+                }
             }
         }
         
