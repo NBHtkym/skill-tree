@@ -1,10 +1,14 @@
 import os
-from flask import Flask, jsonify, request, abort, send_from_directory
+import secrets
+from flask import Flask, jsonify, request, abort, send_from_directory, g
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.middleware.proxy_fix import ProxyFix
 import json
 from datetime import datetime
 from models import db, User, UserProgress, CustomExercise
+
+# Simple token store (in production, use Redis or database)
+auth_tokens = {}
 
 app = Flask(__name__, static_folder='frontend', static_url_path='')
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
@@ -27,6 +31,22 @@ login_manager.init_app(app)
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+def get_authenticated_user():
+    """Get user from either Flask-Login session or Authorization header token"""
+    # First try Flask-Login session
+    if current_user.is_authenticated:
+        return current_user
+    
+    # Then try token from header
+    auth_header = request.headers.get('Authorization', '')
+    if auth_header.startswith('Bearer '):
+        token = auth_header[7:]
+        user_id = auth_tokens.get(token)
+        if user_id:
+            return User.query.get(user_id)
+    
+    return None
 
 BACKEND_DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'backend', 'data')
 SKILL_TREE_PATH = os.path.join(BACKEND_DATA_DIR, 'skill_tree.json')
@@ -119,9 +139,14 @@ def signup():
     
     login_user(user)
     
+    # Generate token for localStorage-based auth
+    token = secrets.token_urlsafe(32)
+    auth_tokens[token] = user.id
+    
     return jsonify({
         'success': True,
-        'user': {'id': user.id, 'email': user.email}
+        'user': {'id': user.id, 'email': user.email},
+        'token': token
     })
 
 @app.route('/api/auth/login', methods=['POST'])
@@ -143,9 +168,14 @@ def login():
     
     login_user(user)
     
+    # Generate token for localStorage-based auth
+    token = secrets.token_urlsafe(32)
+    auth_tokens[token] = user.id
+    
     return jsonify({
         'success': True,
-        'user': {'id': user.id, 'email': user.email}
+        'user': {'id': user.id, 'email': user.email},
+        'token': token
     })
 
 @app.route('/api/auth/logout', methods=['POST'])
@@ -155,10 +185,11 @@ def logout():
 
 @app.route('/api/auth/status', methods=['GET'])
 def auth_status():
-    if current_user.is_authenticated:
+    user = get_authenticated_user()
+    if user:
         return jsonify({
             'authenticated': True,
-            'user': {'id': current_user.id, 'email': current_user.email}
+            'user': {'id': user.id, 'email': user.email}
         })
     return jsonify({'authenticated': False})
 
@@ -172,15 +203,16 @@ def get_skill_tree():
 
 @app.route('/api/progress', methods=['GET'])
 def get_progress():
-    if not current_user.is_authenticated:
+    user = get_authenticated_user()
+    if not user:
         return jsonify({
             'completed_exercises': [],
             'last_updated': None
         })
     
-    progress = UserProgress.query.filter_by(user_id=current_user.id).first()
+    progress = UserProgress.query.filter_by(user_id=user.id).first()
     if not progress:
-        progress = UserProgress(user_id=current_user.id, completed_exercises=[])
+        progress = UserProgress(user_id=user.id, completed_exercises=[])
         db.session.add(progress)
         db.session.commit()
     
@@ -191,7 +223,8 @@ def get_progress():
 
 @app.route('/api/progress', methods=['POST'])
 def update_progress():
-    if not current_user.is_authenticated:
+    user = get_authenticated_user()
+    if not user:
         return jsonify({'success': False, 'message': 'Please log in to save progress'}), 401
     
     if not request.is_json:
@@ -204,11 +237,11 @@ def update_progress():
     if not exercise_id:
         abort(400, description="Exercise ID is required")
     
-    all_exercises, all_dependencies = get_all_exercises_and_deps(current_user.id)
+    all_exercises, all_dependencies = get_all_exercises_and_deps(user.id)
     
-    progress = UserProgress.query.filter_by(user_id=current_user.id).first()
+    progress = UserProgress.query.filter_by(user_id=user.id).first()
     if not progress:
-        progress = UserProgress(user_id=current_user.id, completed_exercises=[])
+        progress = UserProgress(user_id=user.id, completed_exercises=[])
         db.session.add(progress)
     
     completed_exercises = progress.completed_exercises or []
@@ -247,12 +280,13 @@ def update_progress():
 
 @app.route('/api/available-exercises', methods=['GET'])
 def get_available_exercises():
-    user_id = current_user.id if current_user.is_authenticated else None
+    user = get_authenticated_user()
+    user_id = user.id if user else None
     all_exercises, all_dependencies = get_all_exercises_and_deps(user_id)
     
     completed_exercises = []
-    if current_user.is_authenticated:
-        progress = UserProgress.query.filter_by(user_id=current_user.id).first()
+    if user:
+        progress = UserProgress.query.filter_by(user_id=user.id).first()
         if progress:
             completed_exercises = progress.completed_exercises or []
     
@@ -269,7 +303,8 @@ def get_available_exercises():
 
 @app.route('/api/exercises', methods=['GET'])
 def get_user_exercises():
-    user_id = current_user.id if current_user.is_authenticated else None
+    user = get_authenticated_user()
+    user_id = user.id if user else None
     all_exercises, all_dependencies = get_all_exercises_and_deps(user_id)
     
     return jsonify({
@@ -279,7 +314,8 @@ def get_user_exercises():
 
 @app.route('/api/exercises/create', methods=['POST'])
 def create_exercise():
-    if not current_user.is_authenticated:
+    user = get_authenticated_user()
+    if not user:
         return jsonify({'success': False, 'message': 'Please log in to create exercises'}), 401
     
     if not request.is_json:
@@ -292,10 +328,10 @@ def create_exercise():
         return jsonify({'success': False, 'message': 'Exercise name is required'}), 400
     
     import uuid
-    exercise_id = f"custom_{current_user.id}_{uuid.uuid4().hex[:8]}"
+    exercise_id = f"custom_{user.id}_{uuid.uuid4().hex[:8]}"
     
     custom_exercise = CustomExercise(
-        user_id=current_user.id,
+        user_id=user.id,
         exercise_id=exercise_id,
         name=name,
         description=data.get('description', ''),
@@ -324,11 +360,12 @@ def create_exercise():
 
 @app.route('/api/exercises/<exercise_id>', methods=['DELETE'])
 def delete_exercise(exercise_id):
-    if not current_user.is_authenticated:
+    user = get_authenticated_user()
+    if not user:
         return jsonify({'success': False, 'message': 'Please log in to delete exercises'}), 401
     
     custom_exercise = CustomExercise.query.filter_by(
-        user_id=current_user.id,
+        user_id=user.id,
         exercise_id=exercise_id
     ).first()
     

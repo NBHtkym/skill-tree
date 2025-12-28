@@ -1,5 +1,27 @@
 const Auth = (function() {
     let currentUser = null;
+    const TOKEN_KEY = 'workout_auth_token';
+    
+    function getAuthToken() {
+        return localStorage.getItem(TOKEN_KEY);
+    }
+    
+    function setAuthToken(token) {
+        if (token) {
+            localStorage.setItem(TOKEN_KEY, token);
+        } else {
+            localStorage.removeItem(TOKEN_KEY);
+        }
+    }
+    
+    function getAuthHeaders() {
+        const token = getAuthToken();
+        const headers = { 'Content-Type': 'application/json' };
+        if (token) {
+            headers['Authorization'] = `Bearer ${token}`;
+        }
+        return headers;
+    }
     
     const elements = {
         modal: document.getElementById('auth-modal'),
@@ -92,13 +114,15 @@ const Auth = (function() {
     async function checkAuthStatus() {
         try {
             const response = await fetch('/api/auth/status', {
-                credentials: 'include'
+                credentials: 'include',
+                headers: getAuthHeaders()
             });
             const data = await response.json();
             
             if (data.authenticated) {
                 setLoggedIn(data.user);
             } else {
+                setAuthToken(null);
                 setLoggedOut();
             }
         } catch (error) {
@@ -124,6 +148,7 @@ const Auth = (function() {
             const data = await response.json();
             
             if (data.success) {
+                setAuthToken(data.token);
                 setLoggedIn(data.user);
                 hideModal();
                 if (window.ProgressTracker) {
@@ -160,6 +185,7 @@ const Auth = (function() {
             const data = await response.json();
             
             if (data.success) {
+                setAuthToken(data.token);
                 setLoggedIn(data.user);
                 hideModal();
                 if (window.ProgressTracker) {
@@ -177,8 +203,10 @@ const Auth = (function() {
         try {
             await fetch('/api/auth/logout', {
                 method: 'POST',
-                credentials: 'include'
+                credentials: 'include',
+                headers: getAuthHeaders()
             });
+            setAuthToken(null);
             setLoggedOut();
             if (window.ProgressTracker) {
                 window.ProgressTracker.loadProgress();
@@ -221,7 +249,8 @@ const Auth = (function() {
         getUser,
         showModal,
         hideModal,
-        checkAuthStatus
+        checkAuthStatus,
+        getAuthHeaders
     };
 })();
 

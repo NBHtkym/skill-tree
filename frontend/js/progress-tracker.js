@@ -20,6 +20,13 @@ const ProgressTracker = (function() {
     let lockedExercises = [];
     let isApiAvailable = false;
     
+    function getAuthHeaders() {
+        if (window.Auth && window.Auth.getAuthHeaders) {
+            return window.Auth.getAuthHeaders();
+        }
+        return { 'Content-Type': 'application/json' };
+    }
+    
     // DOM elements cache (updated for new full-screen layout)
     const elements = {
         skillTree: document.getElementById('skill-tree'),
@@ -47,7 +54,7 @@ const ProgressTracker = (function() {
      */
     function checkApiAvailability() {
         return new Promise((resolve) => {
-            fetch(API_ENDPOINTS.PROGRESS, { credentials: 'include' })
+            fetch(API_ENDPOINTS.PROGRESS, { credentials: 'include', headers: getAuthHeaders() })
                 .then(response => {
                     if (response.ok) {
                         isApiAvailable = true;
@@ -73,7 +80,7 @@ const ProgressTracker = (function() {
     function loadProgress() {
         if (isApiAvailable) {
             // Load from backend API
-            fetch(API_ENDPOINTS.PROGRESS, { credentials: 'include' })
+            fetch(API_ENDPOINTS.PROGRESS, { credentials: 'include', headers: getAuthHeaders() })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`API error: ${response.status}`);
@@ -218,9 +225,7 @@ const ProgressTracker = (function() {
         // Try to sync with backend (async, don't block UI)
         fetch(API_ENDPOINTS.PROGRESS, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: getAuthHeaders(),
             credentials: 'include',
             body: JSON.stringify({
                 exercise_id: exerciseId,
@@ -264,9 +269,7 @@ const ProgressTracker = (function() {
         if (isApiAvailable) {
             fetch(API_ENDPOINTS.PROGRESS, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: getAuthHeaders(),
                 credentials: 'include',
                 body: JSON.stringify({
                     exercise_id: exerciseId,
@@ -514,7 +517,7 @@ const ProgressTracker = (function() {
             });
         }
         
-        return fetch(API_ENDPOINTS.AVAILABLE_EXERCISES, { credentials: 'include' })
+        return fetch(API_ENDPOINTS.AVAILABLE_EXERCISES, { credentials: 'include', headers: getAuthHeaders() })
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`API error: ${response.status}`);

@@ -135,9 +135,10 @@ const ExerciseCreator = (function() {
         }
         
         try {
+            const headers = window.Auth && window.Auth.getAuthHeaders ? window.Auth.getAuthHeaders() : { 'Content-Type': 'application/json' };
             const response = await fetch('/api/exercises/create', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: headers,
                 credentials: 'include',
                 body: JSON.stringify({
                     name,
