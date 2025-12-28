@@ -476,10 +476,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow-y: auto;
+  padding: var(--spacing-md);
+  box-sizing: border-box;
 }
 
 .modal-overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -494,8 +497,11 @@ body {
   padding: var(--spacing-xl);
   width: 100%;
   max-width: 400px;
+  max-height: 90vh;
+  overflow-y: auto;
   box-shadow: var(--shadow-lg);
   z-index: 1001;
+  margin: auto;
 }
 
 .modal-close {

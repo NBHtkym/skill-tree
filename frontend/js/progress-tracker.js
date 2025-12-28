@@ -51,7 +51,7 @@ const ProgressTracker = (function() {
             
             const apiUrl = `${window.SkillTree.API_BASE_URL}${window.SkillTree.API_ENDPOINTS.PROGRESS}`;
             
-            fetch(apiUrl)
+            fetch(apiUrl, { credentials: 'include' })
                 .then(response => {
                     if (response.ok) {
                         isApiAvailable = true;
@@ -79,7 +79,7 @@ const ProgressTracker = (function() {
             // Load from backend API
             const apiUrl = `${window.SkillTree.API_BASE_URL}${window.SkillTree.API_ENDPOINTS.PROGRESS}`;
             
-            fetch(apiUrl)
+            fetch(apiUrl, { credentials: 'include' })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`API error: ${response.status}`);
@@ -218,6 +218,7 @@ const ProgressTracker = (function() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                credentials: 'include',
                 body: JSON.stringify({
                     exercise_id: exerciseId,
                     completed: true
@@ -280,6 +281,7 @@ const ProgressTracker = (function() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                credentials: 'include',
                 body: JSON.stringify({
                     exercise_id: exerciseId,
                     completed: false
