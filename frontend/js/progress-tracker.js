@@ -10,6 +10,10 @@
 const ProgressTracker = (function() {
     // Private variables
     const STORAGE_KEY = 'workout-skill-tree-progress';
+    const API_ENDPOINTS = {
+        PROGRESS: '/api/progress',
+        AVAILABLE_EXERCISES: '/api/available-exercises'
+    };
     let skillTreeData = null;
     let completedExercises = [];
     let availableExercises = [];
@@ -43,15 +47,7 @@ const ProgressTracker = (function() {
      */
     function checkApiAvailability() {
         return new Promise((resolve) => {
-            if (!window.SkillTree || !window.SkillTree.API_BASE_URL) {
-                isApiAvailable = false;
-                resolve();
-                return;
-            }
-            
-            const apiUrl = `${window.SkillTree.API_BASE_URL}${window.SkillTree.API_ENDPOINTS.PROGRESS}`;
-            
-            fetch(apiUrl, { credentials: 'include' })
+            fetch(API_ENDPOINTS.PROGRESS, { credentials: 'include' })
                 .then(response => {
                     if (response.ok) {
                         isApiAvailable = true;
@@ -77,9 +73,7 @@ const ProgressTracker = (function() {
     function loadProgress() {
         if (isApiAvailable) {
             // Load from backend API
-            const apiUrl = `${window.SkillTree.API_BASE_URL}${window.SkillTree.API_ENDPOINTS.PROGRESS}`;
-            
-            fetch(apiUrl, { credentials: 'include' })
+            fetch(API_ENDPOINTS.PROGRESS, { credentials: 'include' })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`API error: ${response.status}`);
@@ -211,9 +205,7 @@ const ProgressTracker = (function() {
         
         // Update backend if available
         if (isApiAvailable) {
-            const apiUrl = `${window.SkillTree.API_BASE_URL}${window.SkillTree.API_ENDPOINTS.PROGRESS}`;
-            
-            fetch(apiUrl, {
+            fetch(API_ENDPOINTS.PROGRESS, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -274,9 +266,7 @@ const ProgressTracker = (function() {
         
         // Update backend if available
         if (isApiAvailable) {
-            const apiUrl = `${window.SkillTree.API_BASE_URL}${window.SkillTree.API_ENDPOINTS.PROGRESS}`;
-            
-            fetch(apiUrl, {
+            fetch(API_ENDPOINTS.PROGRESS, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -528,9 +518,7 @@ const ProgressTracker = (function() {
             });
         }
         
-        const apiUrl = `${window.SkillTree.API_BASE_URL}${window.SkillTree.API_ENDPOINTS.AVAILABLE_EXERCISES}`;
-        
-        return fetch(apiUrl)
+        return fetch(API_ENDPOINTS.AVAILABLE_EXERCISES, { credentials: 'include' })
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`API error: ${response.status}`);
@@ -578,4 +566,11 @@ document.addEventListener('DOMContentLoaded', function() {
             ProgressTracker.init(event.detail.data);
         });
     }
+    
+    // Reload progress when auth state changes (login/logout)
+    document.addEventListener('authStateChanged', function(event) {
+        if (window.skillTreeData) {
+            ProgressTracker.init(window.skillTreeData);
+        }
+    });
 });
